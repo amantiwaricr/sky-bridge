@@ -1,0 +1,48 @@
+.figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+}
+
+.wide {
+  aspect-ratio: 16 / 10;
+}
+.square {
+  aspect-ratio: 1 / 1;
+}
+.portrait {
+  aspect-ratio: 3 / 4;
+}
+.auto {
+  aspect-ratio: auto;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder state: visibly unfinished, never mistaken for real artwork. */
+.figure[data-placeholder='true'] {
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+  border: 1px dashed var(--border-strong);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg-subtle),
+    var(--bg-subtle) 12px,
+    #eef2f5 12px,
+    #eef2f5 24px
+  );
+}
+
+.placeholderText {
+  max-width: 26ch;
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  text-align: center;
+  text-wrap: balance;
+}

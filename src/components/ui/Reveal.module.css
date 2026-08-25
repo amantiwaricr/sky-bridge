@@ -1,0 +1,28 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* With motion reduced the hook reports visible immediately; drop the offset
+   entirely so nothing shifts. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Printing never triggers scroll, so never withhold content from print. */
+@media print {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

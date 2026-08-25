@@ -1,0 +1,10 @@
+.grid {
+  display: grid;
+  gap: var(--grid-gap, var(--space-5));
+  /* min() stops the track from exceeding the viewport on narrow screens,
+     which is the usual cause of horizontal overflow in auto-fit grids. */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(var(--grid-min, 17rem), 100%), 1fr)
+  );
+}

@@ -1,0 +1,129 @@
+.footer {
+  padding-top: var(--space-8);
+  background: var(--bg-inverse);
+  color: var(--text-inverse-muted);
+  font-size: var(--step--1);
+}
+
+.top {
+  display: grid;
+  gap: var(--space-7);
+  padding-bottom: var(--space-7);
+  grid-template-columns: 1fr;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.blurb {
+  max-width: 42ch;
+  line-height: var(--leading-normal);
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-inverse);
+  border-radius: var(--radius);
+  color: var(--text-inverse);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.socialLink:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.colHeading {
+  margin-bottom: var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-inverse);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.link {
+  color: inherit;
+  transition: color var(--dur) var(--ease);
+}
+
+.link:hover {
+  color: var(--text-inverse);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contactRow {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.contactIcon {
+  flex-shrink: 0;
+  margin-top: 0.3em;
+  color: var(--accent-400);
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--border-inverse);
+}
+
+.copyright {
+  margin: 0;
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+@media (min-width: 40rem) {
+  .top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .top {
+    /* Brand column takes the wider track. */
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+}

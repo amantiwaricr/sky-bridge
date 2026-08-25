@@ -1,0 +1,61 @@
+.layout {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-3);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent-600);
+}
+
+.heading {
+  margin-bottom: var(--space-5);
+  max-width: 20ch;
+}
+
+.paragraph {
+  margin-bottom: var(--space-4);
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+.points {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.point {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  font-weight: 500;
+}
+
+.pointIcon {
+  flex-shrink: 0;
+  margin-top: 0.28em;
+  color: var(--accent-600);
+}
+
+.cta {
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 62rem) {
+  .layout {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-8);
+  }
+
+  .points {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3) var(--space-5);
+  }
+}

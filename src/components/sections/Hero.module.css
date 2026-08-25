@@ -1,0 +1,116 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + var(--space-7));
+  padding-bottom: var(--space-8);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60rem 32rem at 82% -10%, var(--brand-100), transparent 70%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.content {
+  max-width: 60ch;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-4);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent-600);
+}
+
+.headline {
+  margin: 0;
+  max-width: 18ch;
+}
+
+.sub {
+  margin-top: var(--space-5);
+  max-width: 52ch;
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  color: var(--text-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.highlight {
+  position: relative;
+  padding-left: var(--space-4);
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.media {
+  /* Hidden on small screens: a decorative image above the fold pushes the
+     CTA out of view on phones. */
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .media {
+    display: block;
+  }
+
+  .inner {
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 64rem) {
+  .hero {
+    padding-top: calc(var(--header-h) + var(--space-8));
+    padding-bottom: var(--space-9);
+  }
+
+  .inner {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-8);
+  }
+}
+
+.figure {
+  box-shadow: var(--shadow-lg);
+}

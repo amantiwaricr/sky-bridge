@@ -1,0 +1,28 @@
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.default {
+  background: var(--bg);
+}
+
+.subtle {
+  background: var(--bg-subtle);
+}
+
+/* Hairline separators keep adjacent same-tone sections from merging. */
+.subtle + .subtle,
+.default + .default {
+  border-top: 1px solid var(--border);
+}
+
+.inverse {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+}
+
+.inverse :global(h2),
+.inverse :global(h3) {
+  color: var(--text-inverse);
+}

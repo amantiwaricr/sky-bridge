@@ -1,0 +1,118 @@
+/* ==========================================================================
+   DESIGN TOKENS
+   --------------------------------------------------------------------------
+   The palette and type stack below are a NEUTRAL PROFESSIONAL PLACEHOLDER.
+   They are deliberately restrained (a single deep navy + one accent) so the
+   site reads as corporate rather than as a random theme.
+
+   >>> REPLACE the values in the "BRAND" block with the company's real colours
+   >>> and typefaces sampled from the profile PDF. Nothing else needs to change:
+   >>> every component consumes these variables, none hard-code a colour.
+   ========================================================================== */
+
+:root {
+  /* ---------- BRAND (replace from PDF) ---------------------------------- */
+  --brand-900: #0b1b2b;
+  --brand-800: #12293f;
+  --brand-700: #1a3a57;
+  --brand-600: #24506f;
+  --brand-500: #336c92;
+  --brand-400: #5a90b4;
+  --brand-300: #93b8d3;
+  --brand-200: #c7dbe9;
+  --brand-100: #e8f0f6;
+
+  --accent-600: #b4762a;
+  --accent-500: #d18f36;
+  --accent-400: #e0a95c;
+  --accent-100: #fbf1e2;
+
+  /* Font families. Swap for the closest web equivalents of the PDF's type. */
+  --font-display: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  /* ---------- SEMANTIC ROLES (derived -- rarely edited directly) --------- */
+  --primary: var(--brand-700);
+  --primary-hover: var(--brand-800);
+  --primary-contrast: #ffffff;
+  --accent: var(--accent-500);
+  --accent-hover: var(--accent-600);
+
+  --bg: #ffffff;
+  --bg-subtle: #f6f8fa;
+  --bg-inverse: var(--brand-900);
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+
+  --text: #16202b;
+  --text-muted: #5b6874;
+  --text-inverse: #ffffff;
+  --text-inverse-muted: #b3c2ce;
+
+  --border: #e3e8ed;
+  --border-strong: #cdd5dd;
+  --border-inverse: rgba(255, 255, 255, 0.14);
+
+  --focus-ring: var(--accent-500);
+
+  /* ---------- TYPE SCALE (fluid) ---------------------------------------- */
+  --step--1: clamp(0.82rem, 0.79rem + 0.13vw, 0.89rem);
+  --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.09rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.34vw, 1.4rem);
+  --step-2: clamp(1.44rem, 1.32rem + 0.58vw, 1.8rem);
+  --step-3: clamp(1.73rem, 1.53rem + 0.94vw, 2.31rem);
+  --step-4: clamp(2.07rem, 1.76rem + 1.48vw, 2.97rem);
+  --step-5: clamp(2.49rem, 2.01rem + 2.26vw, 3.82rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.3;
+  --leading-normal: 1.65;
+
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.08em;
+
+  /* ---------- SPACING --------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Vertical rhythm between page sections. */
+  --section-y: clamp(3.5rem, 2rem + 6vw, 7rem);
+
+  /* ---------- LAYOUT ---------------------------------------------------- */
+  --container: 1200px;
+  --container-narrow: 820px;
+  --gutter: clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
+  --header-h: 76px;
+
+  /* ---------- RADII & ELEVATION ----------------------------------------- */
+  /* Restrained radii -- corporate, not bubbly. */
+  --radius-sm: 3px;
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  --shadow-sm: 0 1px 2px rgba(11, 27, 43, 0.06);
+  --shadow: 0 2px 8px rgba(11, 27, 43, 0.07), 0 1px 2px rgba(11, 27, 43, 0.05);
+  --shadow-lg: 0 12px 32px rgba(11, 27, 43, 0.1), 0 2px 6px rgba(11, 27, 43, 0.05);
+
+  /* ---------- MOTION ---------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur: 220ms;
+  --dur-slow: 520ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+}

@@ -1,0 +1,39 @@
+.wrap {
+  max-width: 62ch;
+  margin-bottom: var(--space-7);
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--accent-600);
+}
+
+.heading {
+  margin: 0;
+}
+
+.intro {
+  margin-top: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+}
+
+/* On dark sections the muted greys lose contrast, so lift them. */
+.inverse .eyebrow {
+  color: var(--accent-400);
+}
+
+.inverse .intro {
+  color: var(--text-inverse-muted);
+}

@@ -1,0 +1,128 @@
+.form {
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.rows {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.required {
+  margin-left: 0.15em;
+  color: var(--accent-600);
+}
+
+.input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  font-size: var(--step-0);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.input:hover {
+  border-color: var(--brand-400);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--brand-100);
+}
+
+.inputError {
+  border-color: #b4232a;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px #fbe6e7;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 8rem;
+  line-height: var(--leading-normal);
+}
+
+.error {
+  margin: 0;
+  font-size: var(--step--1);
+  color: #a11d24;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.note {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.status:empty {
+  display: none;
+}
+
+.success,
+.failure {
+  margin: var(--space-5) 0 0;
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+}
+
+.success {
+  background: #e8f5ec;
+  border: 1px solid #b6dfc3;
+  color: #1c5c33;
+}
+
+.failure {
+  background: var(--accent-100);
+  border: 1px solid var(--accent-400);
+  color: #74491a;
+}
+
+.inlineLink {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.form :global(button[disabled]) {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+@media (min-width: 34rem) {
+  .rows {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fullWidth {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,89 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.title {
+  margin-bottom: var(--space-3);
+  font-size: var(--step-3);
+}
+
+.description {
+  margin-bottom: var(--space-5);
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+.features {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.feature {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  font-size: var(--step--1);
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  margin-top: 0.3em;
+  color: var(--accent-600);
+}
+
+.specs {
+  display: grid;
+  gap: 0;
+  margin: 0 0 var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.spec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  justify-content: space-between;
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--step--1);
+}
+
+.specLabel {
+  color: var(--text-muted);
+}
+
+.specValue {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+
+.cta {
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 56rem) {
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-7);
+  }
+
+  /* Alternate which side the image sits on, without reordering the DOM. */
+  .row[data-flip='true'] .media {
+    order: 2;
+  }
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

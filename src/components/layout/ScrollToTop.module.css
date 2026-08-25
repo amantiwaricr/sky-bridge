@@ -1,0 +1,30 @@
+.button {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
+    visibility var(--dur), background-color var(--dur) var(--ease);
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.button:hover {
+  background: var(--primary-hover);
+}

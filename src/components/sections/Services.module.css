@@ -1,0 +1,53 @@
+.group + .group {
+  margin-top: var(--space-7);
+}
+
+.groupTitle {
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  font-size: var(--step-1);
+  color: var(--primary);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Reveal wrapper must stretch so cards in a row match height. */
+.cardWrap {
+  height: 100%;
+}
+
+.card {
+  gap: var(--space-3);
+}
+
+.cardImage {
+  margin: calc(var(--space-6) * -1) calc(var(--space-6) * -1) var(--space-2);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  background: var(--brand-100);
+  color: var(--primary);
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.card:hover .iconWrap {
+  background: var(--primary);
+  color: var(--primary-contrast);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: var(--step-1);
+}
+
+.cardBody {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}

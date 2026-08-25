@@ -1,0 +1,36 @@
+.wrap {
+  height: 100%;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-5);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-inverse);
+  border-radius: var(--radius-lg);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.icon {
+  color: var(--accent-400);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--step-1);
+  color: var(--text-inverse);
+}
+
+.body {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--text-inverse-muted);
+}

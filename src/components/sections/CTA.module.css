@@ -1,0 +1,27 @@
+.section {
+  padding-block: var(--section-y);
+  background: var(--brand-800);
+  color: var(--text-inverse);
+}
+
+.inner {
+  text-align: center;
+}
+
+.heading {
+  margin: 0 auto;
+  max-width: 22ch;
+  color: var(--text-inverse);
+}
+
+.body {
+  margin: var(--space-4) auto 0;
+  max-width: 54ch;
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  color: var(--text-inverse-muted);
+}
+
+.button {
+  margin-top: var(--space-6);
+}
