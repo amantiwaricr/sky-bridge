@@ -13,6 +13,7 @@
  * ============================================================================
  */
 
+import noticeImage from '../assets/notices/name-change-notice.jpg';
 import logoFull from '../assets/logo/logo-full.png';
 import logoMark from '../assets/logo/logo-mark.png';
 import heroCollage from '../assets/hero/hero-collage.jpg';
@@ -77,6 +78,26 @@ export const company = {
   licenceNumber: '1166/073/074',
   registrationNumber: '164997/073/074',
   serviceType: 'Manpower Supply',
+};
+
+/**
+ * Public notice shown in a modal when the site loads.
+ *
+ * This is the Department of Foreign Employment's published notice of the
+ * company's registered name change. Set `enabled: false` to stop showing it
+ * once the objection period has passed and the change is complete.
+ */
+export const launchNotice = {
+  enabled: true,
+  title: 'Public Notice',
+  /** false = shows on every visit; true = shows once per browser tab session. */
+  showOncePerSession: false,
+  dismissLabel: 'Continue to website',
+  image: {
+    src: noticeImage,
+    alt:
+      'Public notice from the Department of Foreign Employment, Kathmandu, inviting objections to the change of the company\'s registered name from Sky Bridge Overseas Pvt. Ltd. to Future Nest International Pvt. Ltd. Licence number 1166/073/74.',
+  },
 };
 
 export const seo = {

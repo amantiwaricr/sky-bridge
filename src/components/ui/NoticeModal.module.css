@@ -1,0 +1,142 @@
+.dialog {
+  /* The dialog element is the backdrop's sibling surface -- keep it
+     transparent and let the inner panel carry the visual treatment, so a
+     click on this element registers as a backdrop click. */
+  width: min(56rem, 100vw - 2rem);
+  max-width: none;
+  max-height: calc(100dvh - 2rem);
+  /* The global reset zeroes every margin, which overrides the UA stylesheet's
+     `margin: auto` on <dialog> and pins the modal to the top-left corner.
+     Restore it so the dialog centres. */
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background: rgba(3, 47, 69, 0.72);
+  backdrop-filter: blur(2px);
+}
+
+.dialog[open] {
+  animation: fade var(--dur) var(--ease);
+}
+
+.dialog[open]::backdrop {
+  animation: fade var(--dur) var(--ease);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 2rem);
+  overflow: hidden;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-shrink: 0;
+  padding: var(--space-4) var(--space-5);
+  background: var(--banner-gradient);
+  color: var(--text-inverse);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-inverse);
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* 44px touch target. */
+  width: 44px;
+  height: 44px;
+  margin-right: calc(var(--space-2) * -1);
+  border-radius: var(--radius);
+  color: var(--text-inverse);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.close:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
+/* The notice is a tall document: let it scroll inside the panel rather than
+   shrinking it to an unreadable size. */
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: var(--space-4);
+  background: var(--bg-subtle);
+  overscroll-behavior: contain;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-inline: auto;
+  max-width: 44rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.foot {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.continueButton {
+  padding: 0.7rem 1.4rem;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: background-color var(--dur) var(--ease);
+}
+
+.continueButton:hover {
+  background: var(--primary-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open],
+  .dialog[open]::backdrop {
+    animation: none;
+  }
+}

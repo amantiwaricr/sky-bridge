@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { ScrollToTop } from './components/layout/ScrollToTop';
+import { NoticeModal } from './components/ui/NoticeModal';
 import { Home } from './pages/Home';
 import { getAvailableSections } from './data/sectionRegistry';
 import { useDocumentMeta } from './hooks/useDocumentMeta';
@@ -25,6 +26,7 @@ export default function App() {
       </main>
       <Footer availableSections={availableSections} />
       <ScrollToTop />
+      <NoticeModal />
     </>
   );
 }
