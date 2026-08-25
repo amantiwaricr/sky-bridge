@@ -1,36 +1,43 @@
 /* ==========================================================================
    DESIGN TOKENS
    --------------------------------------------------------------------------
-   The palette and type stack below are a NEUTRAL PROFESSIONAL PLACEHOLDER.
-   They are deliberately restrained (a single deep navy + one accent) so the
-   site reads as corporate rather than as a random theme.
-
-   >>> REPLACE the values in the "BRAND" block with the company's real colours
-   >>> and typefaces sampled from the profile PDF. Nothing else needs to change:
-   >>> every component consumes these variables, none hard-code a colour.
+   The palette is Sky Bridge Overseas' own, sampled from the company profile
+   PDF (see the BRAND block for the source of each value). Every component
+   consumes these variables and none hard-codes a colour, so the whole site
+   re-skins from this one file.
    ========================================================================== */
 
 :root {
-  /* ---------- BRAND (replace from PDF) ---------------------------------- */
-  --brand-900: #0b1b2b;
-  --brand-800: #12293f;
-  --brand-700: #1a3a57;
-  --brand-600: #24506f;
-  --brand-500: #336c92;
-  --brand-400: #5a90b4;
-  --brand-300: #93b8d3;
-  --brand-200: #c7dbe9;
-  --brand-100: #e8f0f6;
+  /* ---------- BRAND ------------------------------------------------------
+     Every value below was sampled directly from the Sky Bridge Overseas
+     company profile PDF:
+       #05527A  cover background navy
+       #0071A7  section header bars, "Our Mission/Vision/Values" labels
+       #00A0E3  logo wordmark blue (company profile page)
+       #00A8CD  footer bars, cover tagline strip
+       #F5821F  the orange in "SKY" on the company profile page
+       #D4EEFC  pale blue tint used behind body panels
+     ---------------------------------------------------------------------- */
+  --brand-900: #032F45;
+  --brand-800: #05527A;
+  --brand-700: #0071A7;
+  --brand-600: #0083BC;
+  --brand-500: #00A0E3;
+  --brand-400: #00A8CD;
+  --brand-300: #6FCBE4;
+  --brand-200: #ADE0F0;
+  --brand-100: #D4EEFC;
 
-  --accent-600: #b4762a;
-  --accent-500: #d18f36;
-  --accent-400: #e0a95c;
-  --accent-100: #fbf1e2;
+  --accent-600: #C4650F;
+  --accent-500: #F5821F;
+  --accent-400: #F79C4C;
+  --accent-100: #FDEEDF;
 
-  /* Font families. Swap for the closest web equivalents of the PDF's type. */
-  --font-display: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  /* Display face matches the condensed all-caps banners in the PDF;
+     body face is a humanist sans close to the profile's Gill Sans-style text. */
+  --font-display: 'Oswald', 'Arial Narrow', Impact, sans-serif;
+  --font-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   /* ---------- SEMANTIC ROLES (derived -- rarely edited directly) --------- */
   --primary: var(--brand-700);
@@ -40,21 +47,24 @@
   --accent-hover: var(--accent-600);
 
   --bg: #ffffff;
-  --bg-subtle: #f6f8fa;
+  --bg-subtle: #F2F8FC;
   --bg-inverse: var(--brand-900);
   --surface: #ffffff;
   --surface-raised: #ffffff;
 
-  --text: #16202b;
-  --text-muted: #5b6874;
+  --text: #12232E;
+  --text-muted: #55697A;
   --text-inverse: #ffffff;
-  --text-inverse-muted: #b3c2ce;
+  --text-inverse-muted: #AFC9D8;
 
-  --border: #e3e8ed;
-  --border-strong: #cdd5dd;
+  --border: #DCE7EF;
+  --border-strong: #BFD2DF;
   --border-inverse: rgba(255, 255, 255, 0.14);
 
   --focus-ring: var(--accent-500);
+
+  /* The PDF's section banners run deep blue -> cyan, left to right. */
+  --banner-gradient: linear-gradient(90deg, var(--brand-700) 0%, var(--brand-400) 100%);
 
   /* ---------- TYPE SCALE (fluid) ---------------------------------------- */
   --step--1: clamp(0.82rem, 0.79rem + 0.13vw, 0.89rem);
@@ -98,9 +108,9 @@
   --radius: 6px;
   --radius-lg: 10px;
 
-  --shadow-sm: 0 1px 2px rgba(11, 27, 43, 0.06);
-  --shadow: 0 2px 8px rgba(11, 27, 43, 0.07), 0 1px 2px rgba(11, 27, 43, 0.05);
-  --shadow-lg: 0 12px 32px rgba(11, 27, 43, 0.1), 0 2px 6px rgba(11, 27, 43, 0.05);
+  --shadow-sm: 0 1px 2px rgba(3, 47, 69, 0.06);
+  --shadow: 0 2px 8px rgba(3, 47, 69, 0.07), 0 1px 2px rgba(3, 47, 69, 0.05);
+  --shadow-lg: 0 12px 32px rgba(3, 47, 69, 0.1), 0 2px 6px rgba(3, 47, 69, 0.05);
 
   /* ---------- MOTION ---------------------------------------------------- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);

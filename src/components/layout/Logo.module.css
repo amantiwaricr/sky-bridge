@@ -1,18 +1,79 @@
-.image {
-  height: 38px;
+.full {
   width: auto;
-  object-fit: contain;
+  max-width: 240px;
+  height: auto;
 }
 
-.logo {
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.mark {
+  width: auto;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
   font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: 1.12rem;
   font-weight: 600;
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.1;
-  color: var(--text);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--brand-700);
+  white-space: nowrap;
 }
 
-.inverse {
+.sub {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.inverse .name {
   color: var(--text-inverse);
+}
+
+.inverse .sub {
+  color: var(--text-inverse-muted);
+}
+
+/* Step the lockup down before it can crowd the menu button. */
+@media (max-width: 30rem) {
+  .lockup {
+    gap: var(--space-2);
+  }
+
+  .mark {
+    height: 32px;
+  }
+
+  .name {
+    font-size: 0.95rem;
+  }
+
+  .sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+  }
+}
+
+/* The subtitle is the first thing to go when space is tight. */
+@media (max-width: 23rem) {
+  .sub {
+    display: none;
+  }
 }

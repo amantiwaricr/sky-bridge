@@ -1,0 +1,121 @@
+.steps {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  counter-reset: step;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand-400);
+  border-radius: var(--radius);
+  transition: border-left-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.step:hover {
+  border-left-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.number {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--brand-200);
+  font-variant-numeric: tabular-nums;
+}
+
+.stepBody {
+  min-width: 0;
+}
+
+.stepTitle {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--primary);
+}
+
+.stepText {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 78ch;
+}
+
+/* ---------- Documents ---------- */
+.docs {
+  margin-top: var(--space-7);
+  padding: var(--space-6);
+  background: var(--accent-100);
+  border: 1px solid var(--accent-400);
+  border-radius: var(--radius-lg);
+}
+
+.docsHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.docsIcon {
+  flex-shrink: 0;
+  color: var(--accent-600);
+}
+
+.docsTitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.docsIntro {
+  margin: 0 0 var(--space-5);
+  max-width: 80ch;
+  color: #6a4a22;
+}
+
+.docsList {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.doc {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--accent-400);
+}
+
+.docTitle {
+  margin-bottom: var(--space-1);
+  font-weight: 700;
+  font-size: var(--step-0);
+}
+
+.docText {
+  margin: 0;
+  font-size: var(--step--1);
+  color: #6a4a22;
+}
+
+@media (min-width: 48rem) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .docsList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4) var(--space-6);
+  }
+}

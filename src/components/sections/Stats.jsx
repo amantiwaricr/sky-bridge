@@ -4,9 +4,14 @@ import { useCountUp } from '../../hooks/useCountUp';
 import { Container } from '../ui/Container';
 import styles from './Stats.module.css';
 
-function Stat({ value, suffix = '', label, delay }) {
+function Stat({ value, suffix = '', label, format, delay }) {
   const [ref, visible] = useReveal();
-  const count = useCountUp(value, visible);
+  // A year is a label, not a quantity: counting up to it reads as nonsense and
+  // a thousands separator would render 2017 as "2,017".
+  const isPlain = format === 'plain';
+  const count = useCountUp(value, visible && !isPlain);
+  const shown = isPlain ? String(value) : count.toLocaleString();
+  const full = isPlain ? String(value) : value.toLocaleString();
 
   return (
     <li
@@ -16,11 +21,11 @@ function Stat({ value, suffix = '', label, delay }) {
     >
       {/* The animated number is hidden from AT; the full value is announced once. */}
       <span className={styles.value} aria-hidden="true">
-        {count.toLocaleString()}
+        {shown}
         {suffix}
       </span>
       <span className="visually-hidden">
-        {value.toLocaleString()}
+        {full}
         {suffix}
       </span>
       <span className={styles.label}>{label}</span>

@@ -55,6 +55,13 @@
   margin-top: var(--space-6);
 }
 
+/* Ragged button widths read as untidy on a narrow column; match them up. */
+@media (max-width: 30rem) {
+  .actions > * {
+    flex: 1 1 100%;
+  }
+}
+
 .highlights {
   display: flex;
   flex-wrap: wrap;

@@ -23,7 +23,7 @@ export function Footer({ availableSections }) {
       <Container>
         <div className={styles.top}>
           <div className={styles.brandCol}>
-            <Logo tone="inverse" />
+            <Logo variant="lockup" tone="inverse" />
             {footer.description && <p className={styles.blurb}>{footer.description}</p>}
 
             {socials.length > 0 && (

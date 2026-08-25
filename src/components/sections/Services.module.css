@@ -1,35 +1,62 @@
-.group + .group {
-  margin-top: var(--space-7);
+.grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
 }
 
-.groupTitle {
-  margin-bottom: var(--space-5);
-  padding-bottom: var(--space-3);
-  font-size: var(--step-1);
-  color: var(--primary);
-  border-bottom: 1px solid var(--border);
-}
-
-/* Reveal wrapper must stretch so cards in a row match height. */
 .cardWrap {
   height: 100%;
 }
 
 .card {
-  gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
-.cardImage {
-  margin: calc(var(--space-6) * -1) calc(var(--space-6) * -1) var(--space-2);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+.card:hover {
+  border-color: var(--brand-300);
+  box-shadow: var(--shadow-lg);
+}
+
+.media {
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.media :global(img) {
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.card:hover .media :global(img) {
+  transform: scale(1.04);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
 .iconWrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius);
   background: var(--brand-100);
   color: var(--primary);
@@ -41,13 +68,44 @@
   color: var(--primary-contrast);
 }
 
-.cardTitle {
+.title {
   margin: 0;
   font-size: var(--step-1);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
-.cardBody {
+/* Roles read as a reference list, so two dense columns where there is room. */
+.roles {
+  display: grid;
+  gap: var(--space-1) var(--space-4);
   margin: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.role {
+  position: relative;
+  padding-left: var(--space-4);
   font-size: var(--step--1);
   color: var(--text-muted);
+  break-inside: avoid;
+}
+
+.role::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand-300);
+}
+
+@media (min-width: 30rem) {
+  .roles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }

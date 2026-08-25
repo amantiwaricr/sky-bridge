@@ -1,19 +1,33 @@
+/* Flex rather than grid so the final row centres instead of leaving the
+   last two logos stranded at the left edge (23 logos never divides evenly). */
 .list {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-4);
   margin: 0;
-  grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
 }
 
 .item {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 6.5rem;
+  flex: 1 1 9rem;
+  /* Cap growth so a short final row does not stretch into banners. */
+  max-width: 12rem;
+  min-height: 7rem;
   padding: var(--space-4);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.item:hover {
+  border-color: var(--brand-300);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
 }
 
 .link {
@@ -24,20 +38,13 @@
   height: 100%;
 }
 
+/* Client logos are shown in their own colours: several of these marks carry
+   fine print that becomes unreadable when desaturated. */
 .logo {
   max-width: 100%;
-  max-height: 3.5rem;
+  max-height: 3.75rem;
   width: auto;
-  /* Neutralise mismatched logo styles at rest; restore full colour on hover. */
-  filter: grayscale(1);
-  opacity: 0.7;
-  transition: filter var(--dur) var(--ease), opacity var(--dur) var(--ease);
-}
-
-.item:hover .logo,
-.link:focus-visible .logo {
-  filter: none;
-  opacity: 1;
+  object-fit: contain;
 }
 
 .name {
@@ -46,4 +53,10 @@
   text-align: center;
   color: var(--text-muted);
   text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item:hover {
+    transform: none;
+  }
 }

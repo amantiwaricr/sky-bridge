@@ -1,137 +1,116 @@
-# Populating the site from the company profile PDF
+# Content guide
 
-All site content lives in **one file**: `src/data/companyData.js`. No component
-contains company facts. Fill that file in and the site builds itself — sections
-appear as soon as they have content and stay hidden until then.
+All site content lives in one file: **`src/data/companyData.js`**. No component
+contains company facts. Change that file and the site follows — sections appear
+when they have content and disappear when they do not.
 
-Run `npm run dev` while you work: a yellow panel at the top of the page lists
-everything still missing. It renders in development only.
+While `npm run dev` is running, a panel at the top of the page lists anything
+still missing. It renders in development only and hides itself once nothing is
+outstanding.
 
 ---
 
-## 1. Extract the assets
+## 1. Source document → website mapping
 
-Export images from the PDF at the largest available resolution and save them
-under `src/assets/`, using the existing folders:
+The company profile PDF is 14 pages. Everything on the site comes from it:
+
+| PDF page | Content | Where it appears |
+| --- | --- | --- |
+| 1 (cover) | Logo, tagline, "People / Knowledge / Innovation", licence and registration numbers, address, phone, email, URL | Hero, navbar, footer, contact |
+| 2 | Message from Chairman — founding, registration, positioning | About, Leadership |
+| 3 | Message from Managing Director | Leadership |
+| 4 | Message from Director (Ambika Tamang) | Leadership |
+| 5 | Message from Director (Bishnu Bahadur Gurung) | Leadership |
+| 6 | Organisational structure chart; company profile table | Leadership, About, Contact |
+| 7 | Mission, Vision, Values | Purpose & Principles |
+| 8 | Six-step recruitment process | Recruitment Process |
+| 9–11 | Twelve job categories and their roles | Job Categories |
+| 12 | 23 client logos; documents required | Valued Clients; Documents required |
+| 13 | Four certificates and licences | Licences & Certificates |
+| 14 | About Nepal; back-cover contact details | About Nepal, Contact, Footer |
+
+## 2. Corrections made to the source text
+
+The profile contains some typographic errors. These were corrected because the
+intended word is unambiguous; everything else is transcribed verbatim. Revert
+any of these in `companyData.js` if you would rather keep the original.
+
+| PDF | Site |
+| --- | --- |
+| Ex-Singapur Police | Ex-Singapore Police |
+| Helves Rack Organizers | Shelf Rack Organizers |
+| Security Personal | Security Personnel |
+| Draft-Man | Draftsman |
+| Auto Mobile | Automobile |
+| Architecture (as a role) | Architect |
+| Gulf(Carrier) | Golf (Carrier) |
+| ZipsonWorker | Zipson Worker (spacing only — the intended trade is unclear, so the word is left as printed) |
+
+Left exactly as printed because the intended meaning is genuinely uncertain:
+**Sit Fitter** and **Sit Fabricator** (possibly "Site"), and **Velocy** under
+Scaffolder. Check these against your own terminology.
+
+## 3. Brand
+
+`src/styles/tokens.css` holds the palette, all sampled from the PDF itself:
+
+| Token | Value | Where it came from |
+| --- | --- | --- |
+| `--brand-700` | `#0071A7` | Section header banners, "Our Mission" labels |
+| `--brand-400` | `#00A8CD` | Footer bars, cover tagline strip |
+| `--brand-800` | `#05527A` | Cover background navy |
+| `--brand-500` | `#00A0E3` | Logo wordmark on the company-profile page |
+| `--accent-500` | `#F5821F` | The orange in "SKY" on the company-profile page |
+| `--brand-100` | `#D4EEFC` | Pale panel tint |
+
+Typefaces are the closest widely-available equivalents to the document's:
+**Oswald** for the condensed all-caps banners, **Source Sans 3** for body text.
+If you change them, update the Google Fonts `<link>` in `index.html` to match.
+
+## 4. Assets
+
+Everything in `src/assets/` was extracted from the PDF:
 
 ```
 src/assets/
-├── logo/            logo.svg or logo.png  (also replace public/favicon.svg)
-├── hero/            the strongest single visual in the PDF
-├── about/           facility, team or context photo
-├── services/        optional per-service imagery
-├── products/        one image per product
-├── projects/        one image per project or case study
-├── certifications/  certificate scans (shown uncropped)
-├── partners/        client and partner logos, ideally transparent PNG or SVG
-└── team/            headshots, only if the PDF has them
+├── logo/            logo-full.png (complete lockup), logo-mark.png (bridge device)
+├── hero/            hero-collage.jpg — the cover collage
+├── about/           departure-hall.jpg, nepal-map.jpg
+├── leadership/      three portraits (see the gap noted below)
+├── categories/      one photograph per job category
+├── certifications/  the four certificates from page 13
+└── partners/        the 23 client logos from page 12
 ```
 
-Import them at the top of `companyData.js` and reference the import — not a
-string path — so Vite fingerprints and optimises them:
+To replace an image, drop the new file in and update its `import` at the top of
+`companyData.js`. Images are referenced by import, not by string path, so Vite
+fingerprints and optimises them.
 
-```js
-import heroImage from '../assets/hero/hero.jpg';
+## 5. Still outstanding
 
-export const hero = {
-  image: { src: heroImage, alt: 'Describe what the image shows' },
-};
-```
+- **No photograph for Ambika Tamang (Director).** Page 4 of the PDF has an
+  empty image box. The card shows her initials instead of a substitute
+  portrait. Drop a photo into `src/assets/leadership/` and wire it to
+  `leadership.people[2].photo` when one is available.
+- **`seo.siteUrl` and `seo.ogImage` are empty.** Set the deployed URL and a
+  1200×630 share image so links preview correctly.
+- **The contact form has no backend.** It validates and then offers a
+  pre-filled `mailto:` link. Set `contact.formEndpoint` to a URL and the form
+  will `POST` `{ name, email, phone, company, message }` as JSON instead.
+- **No social media accounts** appear in the profile, so `socials` is empty and
+  the footer omits that block.
+- **No testimonials** appear in the profile, so there is no testimonials
+  section. Do not add invented ones.
+- **Business hours** are not stated in the profile; `contact.hours` is empty.
+- **The PAN registration certificate** is published because it appears in the
+  company's own profile document, but it carries a tax identification number
+  and a personal photograph. Consider whether you want it on a public website —
+  remove that entry from `certifications.items` if not.
 
-Every image takes `{ src, alt }`. Write real alt text describing the content;
-leave `alt: ''` only for purely decorative images.
+## 6. Map
 
-Any image slot left as `null` renders a labelled dashed placeholder, so an
-unfinished page is obviously unfinished rather than broken.
-
-## 2. Set the brand
-
-In `src/styles/tokens.css`, replace the values in the `BRAND` block — the
-`--brand-*` ramp, the `--accent-*` ramp, and the two font families. Sample the
-colours directly from the PDF. Everything else in the file derives from those,
-and no component hard-codes a colour, so this is the only place to edit.
-
-If you change the fonts, update the Google Fonts `<link>` in `index.html` to
-match, and keep a real fallback stack.
-
-The current palette is a neutral navy/bronze placeholder. It is deliberately
-restrained, but it is **not** the company's palette — replace it.
-
-## 3. Fill in the content
-
-Work top to bottom through `companyData.js`. Each export maps to one section:
-
-| Data export     | Section                       |
-| --------------- | ----------------------------- |
-| `company`       | Navbar, footer, meta          |
-| `seo`           | `<title>`, description, OG    |
-| `hero`          | Hero                          |
-| `stats`         | Statistics band               |
-| `about`         | About                         |
-| `missionVision` | Purpose & Principles          |
-| `services`      | Services                      |
-| `products`      | Products                      |
-| `industries`    | Industries                    |
-| `projects`      | Projects                      |
-| `whyChooseUs`   | Why Choose Us                 |
-| `certifications`| Certifications                |
-| `partners`      | Clients & Partners            |
-| `testimonials`  | Testimonials                  |
-| `cta`           | Closing call to action        |
-| `contact`       | Contact, form and map         |
-| `socials`       | Footer social links           |
-| `footer`        | Footer                        |
-
-Rules that matter:
-
-- **Never invent anything.** If the PDF does not state a figure, a client, a
-  certification or a testimonial, leave it out. An empty array simply removes
-  that section.
-- **`stats` must be real numbers from the PDF.** `value` is numeric, `suffix`
-  is the trailing character (`'+'`, `'%'`).
-- **Trim the prose.** The PDF's paragraphs are usually too long for the web.
-  Keep `about.body` paragraphs to two or three sentences and move concrete
-  claims into `about.points`.
-- **Icons** are referenced by name, e.g. `icon: 'shield'`. The available names
-  are the keys of `ICONS` in `src/components/ui/Icon.jsx` — add more lucide
-  imports there if the company's subject matter needs them.
-- **`services[].group`** is optional. Set it on every service to render them in
-  labelled groups instead of one long grid.
-- Remove entries from `navigation` for any section the PDF cannot fill. The
-  navbar already hides links whose sections did not render, but keeping the
-  list tidy avoids confusion.
-
-## 4. Wire up the contact form
-
-There is no backend. Until one exists, the form validates input and then hands
-the visitor a pre-filled `mailto:` link — it never claims to have sent
-anything.
-
-To connect a real endpoint, set:
-
-```js
-export const contact = { formEndpoint: 'https://your-endpoint.example/contact' };
-```
-
-The form then POSTs `{ name, email, phone, company, message }` as JSON and
-reports success or failure from the response.
-
-## 5. Map
-
-Add a `mapQuery` to an office in `contact.offices` — the address as a plain
-string — and the map renders. It uses OpenStreetMap's keyless embed and
-geocodes from that string, so no coordinates are ever guessed.
-
-To switch to Google Maps or Mapbox, replace the iframe `src` in
-`src/components/sections/MapEmbed.jsx`; both accept the same address string
-plus an API key.
-
-## 6. Finish up
-
-- Replace `public/favicon.svg` with the company mark.
-- Set `seo.siteUrl` to the deployed URL and add an `ogImage` (1200×630).
-- Update the placeholder `<title>` and `<meta name="description">` in
-  `index.html` — those are the no-JavaScript fallbacks for crawlers.
-- Delete `src/components/dev/ContentChecklist.jsx` and its render in
-  `src/pages/Home.jsx` once the data file is complete.
-- Run `npm run build` and `npm run lint` before deploying.
+`contact.offices[0].mapQuery` holds the address string. The map uses Google's
+keyless embed, which geocodes from that string, so no coordinates are stored.
+To use the official Maps Embed API instead, swap the iframe `src` in
+`src/components/sections/MapEmbed.jsx` for
+`https://www.google.com/maps/embed/v1/place?key=YOUR_KEY&q=<mapQuery>`.

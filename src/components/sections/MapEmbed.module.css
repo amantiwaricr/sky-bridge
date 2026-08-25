@@ -11,6 +11,8 @@
   width: 100%;
   height: clamp(16rem, 34vw, 24rem);
   border: 0;
+  /* Brand-tinted ground so a slow-loading embed does not flash grey. */
+  background: var(--brand-100);
 }
 
 .link {

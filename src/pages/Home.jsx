@@ -3,13 +3,11 @@ import { Stats } from '../components/sections/Stats';
 import { About } from '../components/sections/About';
 import { MissionVision } from '../components/sections/MissionVision';
 import { Services } from '../components/sections/Services';
-import { Products } from '../components/sections/Products';
-import { Industries } from '../components/sections/Industries';
-import { Projects } from '../components/sections/Projects';
-import { WhyChooseUs } from '../components/sections/WhyChooseUs';
-import { Certifications } from '../components/sections/Certifications';
+import { Process } from '../components/sections/Process';
+import { Leadership } from '../components/sections/Leadership';
 import { Partners } from '../components/sections/Partners';
-import { Testimonials } from '../components/sections/Testimonials';
+import { Certifications } from '../components/sections/Certifications';
+import { AboutNepal } from '../components/sections/AboutNepal';
 import { CTA } from '../components/sections/CTA';
 import { Contact } from '../components/sections/Contact';
 import { ContentChecklist } from '../components/dev/ContentChecklist';
@@ -17,7 +15,7 @@ import { ContentChecklist } from '../components/dev/ContentChecklist';
 /**
  * Single-page layout. Every section returns null when companyData.js has no
  * content for it, so the running order stays fixed while the page adapts to
- * whatever the PDF actually provides.
+ * whatever the profile actually provides.
  */
 export function Home() {
   return (
@@ -28,13 +26,11 @@ export function Home() {
       <About />
       <MissionVision />
       <Services />
-      <Products />
-      <Industries />
-      <Projects />
-      <WhyChooseUs />
-      <Certifications />
+      <Process />
+      <Leadership />
       <Partners />
-      <Testimonials />
+      <Certifications />
+      <AboutNepal />
       <CTA />
       <Contact />
     </>

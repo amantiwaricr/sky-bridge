@@ -5,12 +5,14 @@ import styles from './MapEmbed.module.css';
 /**
  * Renders a map for the first office that supplies a `mapQuery` address.
  *
- * Uses OpenStreetMap's embed, which needs no API key. It geocodes from the
- * address string, so no coordinates are invented anywhere.
+ * Uses Google's keyless embed, which geocodes from the address string, so no
+ * coordinates are hard-coded or guessed anywhere. (OpenStreetMap's embed is
+ * not an option here: it requires an explicit bounding box and has no
+ * address-lookup parameter.)
  *
- * TO SWAP IN GOOGLE MAPS OR MAPBOX: replace the iframe `src` below. Both
- * accept the same address string via their embed APIs plus a key, e.g.
+ * TO USE THE OFFICIAL MAPS EMBED API instead, swap the `src` for
  *   https://www.google.com/maps/embed/v1/place?key=YOUR_KEY&q=<mapQuery>
+ * which takes the same address string plus an API key.
  */
 export function MapEmbed() {
   const office = contact.offices.find((entry) => entry.mapQuery);
@@ -30,19 +32,19 @@ export function MapEmbed() {
   }
 
   const query = encodeURIComponent(office.mapQuery);
-  const src = `https://www.openstreetmap.org/export/embed.html?bbox=&layer=mapnik&marker=&query=${query}`;
+  const label = office.label ? `${office.label}, ${office.mapQuery}` : office.mapQuery;
 
   return (
     <div className={styles.wrap}>
       <iframe
-        title={`Map showing ${office.label || 'our office'}`}
-        src={src}
+        title={`Map showing ${label}`}
+        src={`https://maps.google.com/maps?q=${query}&output=embed`}
         className={styles.frame}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       />
       <a
-        href={`https://www.openstreetmap.org/search?query=${query}`}
+        href={`https://www.google.com/maps/search/?api=1&query=${query}`}
         className={styles.link}
         target="_blank"
         rel="noopener noreferrer"

@@ -1,6 +1,11 @@
-<!-- Placeholder favicon. Replace with the company logo extracted from the PDF. -->
+<!-- Bridge device from the Sky Bridge Overseas logo, in the brand blue. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="10" fill="#1a3a57"/>
-  <path d="M18 42 L32 20 L46 42" fill="none" stroke="#d18f36" stroke-width="5"
-        stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="64" height="64" rx="9" fill="#0071A7"/>
+  <g fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round">
+    <path d="M13 22v22M51 22v22"/>
+    <path d="M13 22h38"/>
+    <path d="M13 26c10 0 12 12 19 12s9-12 19-12"/>
+    <path d="M8 45c12-9 36-9 48 0"/>
+    <path d="M32 30v14"/>
+  </g>
 </svg>

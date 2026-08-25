@@ -20,23 +20,46 @@
  */
 
 const POLL_MS = 250;
+/** How long the viewport must be still before on-screen content is forced visible. */
+const SETTLE_MS = 500;
 
 const pending = new Set();
+let lastScrollAt = 0;
 let timerId = 0;
 let rafId = 0;
 let listening = false;
 
-/** Reveal once the element's top edge rises above 92% of the viewport. */
+/**
+ * While scrolling, hold the reveal until the element is comfortably in view
+ * rather than firing the moment it peeks over the bottom edge.
+ */
 function shouldReveal(node) {
   return node.getBoundingClientRect().top < window.innerHeight * 0.92;
+}
+
+/**
+ * On arrival, anything already touching the viewport must simply be visible.
+ * A deep link lands mid-page, and content the user can see there should never
+ * be sitting at opacity 0 waiting for them to scroll.
+ */
+function isOnScreen(node) {
+  const rect = node.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
 }
 
 function check() {
   rafId = 0;
   timerId = 0;
 
+  // While the user is scrolling, hold each reveal until the element is
+  // comfortably in view. Once the viewport has been still for a moment,
+  // anything on screen must be visible -- otherwise landing on a deep link
+  // can leave content parked at opacity 0 with no scroll coming to fix it.
+  const settled = performance.now() - lastScrollAt > SETTLE_MS;
+  const ready = settled ? isOnScreen : shouldReveal;
+
   for (const entry of pending) {
-    if (shouldReveal(entry.node)) {
+    if (ready(entry.node)) {
       entry.reveal();
       pending.delete(entry);
     }
@@ -77,6 +100,7 @@ function cancelTimer() {
 }
 
 function onScroll() {
+  lastScrollAt = performance.now();
   // Cancel the pending poll so the scroll-driven check runs immediately.
   cancelRaf();
   cancelTimer();
@@ -105,7 +129,7 @@ function setup() {
  */
 export function watchForReveal(node, reveal) {
   // Check immediately so content already on screen never waits for a tick.
-  if (shouldReveal(node)) {
+  if (shouldReveal(node) || isOnScreen(node)) {
     reveal();
     return () => {};
   }
@@ -113,6 +137,9 @@ export function watchForReveal(node, reveal) {
   const entry = { node, reveal };
   pending.add(entry);
   setup();
+  // Treat registration as activity, so a deep-link scroll that lands right
+  // after mount is given its settle window before content is forced visible.
+  lastScrollAt = performance.now();
   scheduleCheck();
 
   return () => {

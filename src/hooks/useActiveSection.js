@@ -16,12 +16,19 @@ export function useActiveSection(ids) {
       .filter(Boolean);
     if (!nodes.length) return;
 
+    const intersecting = new Map();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActiveId(visible[0].target.id);
+        // Track every section's state, not just the ones in this batch, so
+        // that leaving the last section clears the highlight instead of
+        // leaving it stuck on whichever section was seen most recently.
+        entries.forEach((entry) => {
+          intersecting.set(entry.target.id, entry.isIntersecting);
+        });
+
+        const active = ids.find((id) => intersecting.get(id));
+        setActiveId(active ?? '');
       },
       { rootMargin: '-20% 0px -55% 0px', threshold: 0 }
     );

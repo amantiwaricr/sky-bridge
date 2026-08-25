@@ -1,74 +1,68 @@
-import { useMemo } from 'react';
 import { services } from '../../data/companyData';
 import { Section } from '../ui/Section';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
-import { Card } from '../ui/Card';
-import { Grid } from '../ui/Grid';
 import { Icon } from '../ui/Icon';
 import { Figure } from '../ui/Figure';
 import styles from './Services.module.css';
 
-function ServiceCard({ service, delay }) {
+/**
+ * The job categories the agency recruits for. Each card carries the roles
+ * listed under that category in the company profile, so an employer can see at
+ * a glance whether the trade they need is covered.
+ */
+function CategoryCard({ category, delay }) {
+  const headingId = `category-${category.title.toLowerCase().replace(/[^a-z]+/g, '-')}`;
+
   return (
     <Reveal delay={delay} className={styles.cardWrap}>
-      <Card interactive className={styles.card}>
-        {service.image && (
-          <Figure
-            image={service.image}
-            ratio="wide"
-            className={styles.cardImage}
-            placeholder={`${service.title} image`}
-          />
-        )}
-        <span className={styles.iconWrap}>
-          <Icon name={service.icon} size={24} />
-        </span>
-        <h3 className={styles.cardTitle}>{service.title}</h3>
-        <p className={styles.cardBody}>{service.description}</p>
-      </Card>
+      <article className={styles.card} aria-labelledby={headingId}>
+        <Figure
+          image={category.image}
+          ratio="wide"
+          className={styles.media}
+          placeholder={category.title}
+        />
+
+        <div className={styles.body}>
+          <div className={styles.head}>
+            <span className={styles.iconWrap}>
+              <Icon name={category.icon} size={20} />
+            </span>
+            <h3 id={headingId} className={styles.title}>
+              {category.title}
+            </h3>
+          </div>
+
+          <ul className={styles.roles}>
+            {category.roles.map((role) => (
+              <li key={role} className={styles.role}>
+                {role}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
     </Reveal>
   );
 }
 
-/**
- * Groups services under their `group` label when one is set, so a long list
- * reads as an organised catalogue instead of a wall of identical cards.
- */
 export function Services() {
-  const { items } = services;
-
-  const groups = useMemo(() => {
-    if (items.length === 0) return [];
-    const map = new Map();
-    items.forEach((item) => {
-      const key = item.group ?? '';
-      if (!map.has(key)) map.set(key, []);
-      map.get(key).push(item);
-    });
-    return [...map.entries()].map(([name, groupItems]) => ({ name, items: groupItems }));
-  }, [items]);
-
-  if (items.length === 0) return null;
+  if (services.items.length === 0) return null;
 
   return (
-    <Section id="services" tone="default">
+    <Section id="services" tone="subtle">
       <SectionHeading
         eyebrow={services.eyebrow}
-        heading={services.heading || 'What We Do'}
+        heading={services.heading}
         intro={services.intro}
       />
 
-      {groups.map((group) => (
-        <div key={group.name || 'ungrouped'} className={styles.group}>
-          {group.name && <h3 className={styles.groupTitle}>{group.name}</h3>}
-          <Grid min="17rem">
-            {group.items.map((service, index) => (
-              <ServiceCard key={service.title} service={service} delay={index * 60} />
-            ))}
-          </Grid>
-        </div>
-      ))}
+      <div className={styles.grid}>
+        {services.items.map((category, index) => (
+          <CategoryCard key={category.title} category={category} delay={(index % 3) * 60} />
+        ))}
+      </div>
     </Section>
   );
 }

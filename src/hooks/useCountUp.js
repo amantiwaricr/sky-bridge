@@ -13,7 +13,7 @@ export function useCountUp(target, active, duration = 1400) {
   const frameRef = useRef(0);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) return undefined;
     if (reducedMotion || duration === 0) {
       setValue(target);
       return;

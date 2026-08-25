@@ -1,14 +1,13 @@
 import {
-  about, certifications, contact, industries, missionVision, partners,
-  products, projects, services, testimonials, whyChooseUs,
+  about, aboutNepal, certifications, contact, leadership, missionVision,
+  partners, process, services,
 } from './companyData';
 
 /**
- * Which sections have enough PDF content to render.
+ * Which sections have enough content to render.
  *
  * The navbar and footer read this so they never link to a section that is not
- * on the page, and the dev-only checklist reads it to report what is still
- * outstanding. Each predicate must match the `return null` guard in its
+ * on the page. Each predicate must match the `return null` guard in its
  * matching component.
  */
 export const SECTION_REGISTRY = [
@@ -23,18 +22,16 @@ export const SECTION_REGISTRY = [
     has: () =>
       Boolean(missionVision.mission || missionVision.vision || missionVision.values.length),
   },
-  { id: 'services', label: 'Services', has: () => services.items.length > 0 },
-  { id: 'products', label: 'Products', has: () => products.items.length > 0 },
-  { id: 'industries', label: 'Industries', has: () => industries.items.length > 0 },
-  { id: 'projects', label: 'Projects', has: () => projects.items.length > 0 },
-  { id: 'why-us', label: 'Why Choose Us', has: () => whyChooseUs.items.length > 0 },
+  { id: 'services', label: 'Job Categories', has: () => services.items.length > 0 },
+  { id: 'process', label: 'Recruitment Process', has: () => process.steps.length > 0 },
+  { id: 'leadership', label: 'Leadership', has: () => leadership.people.length > 0 },
+  { id: 'partners', label: 'Clients', has: () => partners.items.length > 0 },
   {
     id: 'certifications',
-    label: 'Certifications',
+    label: 'Licences & Certificates',
     has: () => certifications.items.length > 0,
   },
-  { id: 'partners', label: 'Clients & Partners', has: () => partners.items.length > 0 },
-  { id: 'testimonials', label: 'Testimonials', has: () => testimonials.items.length > 0 },
+  { id: 'nepal', label: 'About Nepal', has: () => aboutNepal.body.length > 0 },
   {
     id: 'contact',
     label: 'Contact',
@@ -51,7 +48,7 @@ export function getAvailableSections() {
   return SECTION_REGISTRY.filter((section) => section.has()).map((section) => section.id);
 }
 
-/** Sections still waiting on PDF content, for the dev checklist. */
+/** Sections still waiting on content, for the dev checklist. */
 export function getMissingSections() {
   return SECTION_REGISTRY.filter((section) => !section.has());
 }

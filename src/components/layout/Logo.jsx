@@ -2,23 +2,36 @@ import { company } from '../../data/companyData';
 import styles from './Logo.module.css';
 
 /**
- * Company mark. Uses the real logo once it is extracted from the PDF and
- * imported in companyData.js; until then it shows the company name as a
- * wordmark, or a clearly-marked placeholder if the name is not set either.
+ * Company mark.
+ *
+ * The full lockup stacks the bridge device over the wordmark, which is too
+ * tall for a 76px header, so the navbar pairs the mark with a typeset name and
+ * the footer uses the full lockup on its own.
  */
-export function Logo({ tone = 'default', className = '' }) {
-  const name = company.name || 'Company name — set in companyData.js';
-  const classes = [styles.logo, styles[tone], className].filter(Boolean).join(' ');
+export function Logo({ variant = 'lockup', tone = 'default', className = '' }) {
+  const name = company.name;
 
-  if (company.logo?.src) {
+  if (variant === 'full' && company.logo?.src) {
     return (
       <img
         src={company.logo.src}
-        alt={company.logo.alt || `${name} logo`}
-        className={[styles.image, className].filter(Boolean).join(' ')}
+        alt={company.logo.alt || name}
+        className={[styles.full, className].filter(Boolean).join(' ')}
+        width="900"
+        height="398"
       />
     );
   }
 
-  return <span className={classes}>{company.shortName || name}</span>;
+  return (
+    <span className={[styles.lockup, styles[tone], className].filter(Boolean).join(' ')}>
+      {company.logoMark?.src && (
+        <img src={company.logoMark.src} alt="" className={styles.mark} width="400" height="244" />
+      )}
+      <span className={styles.text}>
+        <span className={styles.name}>{company.shortName || name}</span>
+        <span className={styles.sub}>Manpower Agency</span>
+      </span>
+    </span>
+  );
 }

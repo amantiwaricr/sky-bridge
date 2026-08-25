@@ -37,7 +37,7 @@ export function Certifications() {
               )}
               <h3 className={styles.name}>{item.name}</h3>
               {item.issuer && <p className={styles.issuer}>{item.issuer}</p>}
-              {item.year && <p className={styles.year}>{item.year}</p>}
+              {item.detail && <p className={styles.detail}>{item.detail}</p>}
             </article>
           </Reveal>
         ))}

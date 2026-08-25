@@ -57,9 +57,14 @@
   color: var(--text-muted);
 }
 
-.year {
-  margin: 0;
+.detail {
+  margin: var(--space-1) 0 0;
   font-size: var(--step--1);
   font-variant-numeric: tabular-nums;
   color: var(--accent-600);
+}
+
+/* Certificates are documents: show them whole and give them room. */
+.media {
+  aspect-ratio: 3 / 4;
 }
