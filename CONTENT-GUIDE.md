@@ -80,7 +80,7 @@ Everything in `src/assets/` was extracted from the PDF:
 ```
 src/assets/
 ├── logo/            logo-full.png (complete lockup), logo-mark.png (bridge device)
-├── hero/            hero-collage.jpg — the cover collage
+├── hero/            hero-collage.webp — cut-out subjects, transparent background
 ├── about/           departure-hall.jpg
 ├── leadership/      three portraits (see the gap noted below)
 ├── categories/      one photograph per job category

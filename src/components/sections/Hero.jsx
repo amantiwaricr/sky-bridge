@@ -55,7 +55,10 @@ export function Hero() {
           <Figure
             image={hero.image}
             eager
-            ratio="portrait"
+            /* Natural ratio, no frame: the cut-out subjects are shown in
+               full and sit directly on the hero background. */
+            ratio="auto"
+            bare
             placeholder="Hero image — extract the strongest visual from the profile PDF"
             className={styles.figure}
           />

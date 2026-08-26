@@ -16,7 +16,7 @@
 import noticeImage from '../assets/notices/name-change-notice.jpg';
 import logoFull from '../assets/logo/logo-full.png';
 import logoMark from '../assets/logo/logo-mark.png';
-import heroCollage from '../assets/hero/hero-collage.jpg';
+import heroCollage from '../assets/hero/hero-collage.webp';
 import aboutDeparture from '../assets/about/departure-hall.jpg';
 
 import chairmanPhoto from '../assets/leadership/chairman.jpg';

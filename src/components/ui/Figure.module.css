@@ -14,6 +14,8 @@
 .portrait {
   aspect-ratio: 3 / 4;
 }
+/* No forced aspect ratio: the image's own proportions drive the box, so the
+   whole picture is shown and nothing is cropped. */
 .auto {
   aspect-ratio: auto;
 }
@@ -22,6 +24,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* `height: 100%` would collapse inside a container that has no intrinsic
+   height, so the auto variant lets the image size itself. `contain` is a
+   belt-and-braces guard in case a parent ever constrains the height. */
+.auto .img {
+  height: auto;
+  object-fit: contain;
+}
+
+/* Cut-out subjects carry their own transparency, so the panel, rounding and
+   clipping would only frame empty space around them. */
+.bare {
+  background: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 /* Placeholder state: visibly unfinished, never mistaken for real artwork. */

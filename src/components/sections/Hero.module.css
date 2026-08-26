@@ -91,18 +91,20 @@
 }
 
 .media {
-  /* Hidden on small screens: a decorative image above the fold pushes the
-     CTA out of view on phones. */
-  display: none;
+  /* Shown at every size. It stacks below the copy on a phone, so the headline
+     and buttons still come first; the previous portrait image was hidden here
+     because its height pushed them off the fold. */
+  display: block;
+  margin-top: var(--space-2);
 }
 
 @media (min-width: 48rem) {
-  .media {
-    display: block;
-  }
-
   .inner {
     gap: var(--space-6);
+  }
+
+  .media {
+    margin-top: 0;
   }
 }
 
@@ -119,5 +121,7 @@
 }
 
 .figure {
-  box-shadow: var(--shadow-lg);
+  /* No shadow: the subjects are cut out, so a box shadow would trace a
+     rectangle around transparent space. */
+  filter: drop-shadow(0 12px 20px rgba(3, 47, 69, 0.16));
 }

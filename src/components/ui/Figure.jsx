@@ -8,15 +8,21 @@ import styles from './Figure.module.css';
  * @param {{ src: string, alt: string }|null} image
  * @param {string} placeholder  Describes the image that belongs here.
  * @param {'wide'|'square'|'portrait'|'auto'} ratio
+ * @param {boolean} bare  Drops the panel, rounding and clipping -- for cut-out
+ *                        subjects on a transparent background, where a framed
+ *                        box would enclose empty space.
  */
 export function Figure({
   image,
   placeholder = 'Image from company profile',
   ratio = 'wide',
   eager = false,
+  bare = false,
   className = '',
 }) {
-  const classes = [styles.figure, styles[ratio], className].filter(Boolean).join(' ');
+  const classes = [styles.figure, styles[ratio], bare ? styles.bare : '', className]
+    .filter(Boolean)
+    .join(' ');
 
   if (!image?.src) {
     return (
