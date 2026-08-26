@@ -59,13 +59,19 @@
 .link {
   /* Long emails and URLs must never force the page sideways. */
   overflow-wrap: anywhere;
-  transition: color var(--dur) var(--ease);
+  /* Styled as an actual link: in body colour with no underline these read as
+     plain text, so nobody realises the email opens a mail client. */
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-300);
+  text-underline-offset: 3px;
+  transition: color var(--dur) var(--ease), text-decoration-color var(--dur) var(--ease);
 }
 
 .link:hover {
-  color: var(--primary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--accent-600);
+  text-decoration-color: currentColor;
 }
 
 .plain {

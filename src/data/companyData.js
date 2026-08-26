@@ -507,5 +507,16 @@ export const footer = {
   description:
     'Government-licensed Nepali manpower agency supplying skilled, semi-skilled and unskilled workers to employers overseas.',
   copyright: '© {year} {company}. All rights reserved.',
+  /**
+   * Destination countries, shown as chips above the social row.
+   * Empty because the company profile does not state which countries the
+   * agency deploys to -- add them here and the block appears.
+   */
+  countries: [],
+  /**
+   * Privacy policy, terms, and similar pages. Empty because this is a
+   * single-page site with no such pages; adding entries renders a
+   * "Compliance" column in the footer.
+   */
   legalLinks: [],
 };

@@ -1,13 +1,16 @@
 .footer {
   padding-top: var(--space-8);
-  background: var(--bg-inverse);
+  /* Deep brand field, matching the reference footer's saturated colour block.
+     Sky Bridge's palette is navy rather than green, so the site stays on brand. */
+  background: linear-gradient(180deg, var(--brand-900) 0%, #02222F 100%);
   color: var(--text-inverse-muted);
   font-size: var(--step--1);
 }
 
+/* ---------- Columns ---------- */
 .top {
   display: grid;
-  gap: var(--space-7);
+  gap: var(--space-7) var(--space-6);
   padding-bottom: var(--space-7);
   grid-template-columns: 1fr;
 }
@@ -15,44 +18,53 @@
 .brandCol {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
   align-items: flex-start;
+  gap: var(--space-5);
 }
 
-.blurb {
-  max-width: 42ch;
-  line-height: var(--leading-normal);
-}
-
-.socials {
-  display: flex;
-  gap: var(--space-2);
-  margin: 0;
-}
-
-.socialLink {
+/* White card lifts the logo off the dark field, as in the reference. */
+.logoBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border-inverse);
-  border-radius: var(--radius);
-  color: var(--text-inverse);
-  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  padding: var(--space-4) var(--space-5);
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
 }
 
-.socialLink:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.32);
+.logoImage {
+  width: auto;
+  max-width: 190px;
+  height: auto;
+}
+
+.blurb {
+  position: relative;
+  max-width: 34ch;
+  margin: 0;
+  padding-bottom: var(--space-4);
+  line-height: var(--leading-normal);
+  color: var(--text-inverse);
+}
+
+/* Short accent rule beneath the tagline. */
+.blurbRule {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 46px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--accent-500);
 }
 
 .colHeading {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
   font-family: var(--font-sans);
   font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wide);
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-inverse);
 }
@@ -65,55 +77,186 @@
 }
 
 .link {
-  color: inherit;
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--text-inverse-muted);
   transition: color var(--dur) var(--ease);
 }
 
+.chevron {
+  flex-shrink: 0;
+  /* Nudge onto the text baseline -- flex baseline alignment ignores SVGs. */
+  transform: translateY(2px);
+  color: var(--brand-400);
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
 .link:hover {
+  color: var(--text-inverse);
+}
+
+.link:hover .chevron {
+  transform: translate(3px, 2px);
+  color: var(--accent-500);
+}
+
+/* ---------- Get in touch ---------- */
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.contactRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.contactBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--brand-700);
+  color: #fff;
+}
+
+.contactBody {
+  min-width: 0;
+  padding-top: 0.3em;
+  /* Long emails and URLs must never force the page sideways. */
+  overflow-wrap: anywhere;
+}
+
+.address {
+  font-style: normal;
+}
+
+.contactLink {
+  color: var(--text-inverse-muted);
+  transition: color var(--dur) var(--ease);
+}
+
+.contactLink:hover {
   color: var(--text-inverse);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.contactRow {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
+/* ---------- Countries ---------- */
+.countries {
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--border-inverse);
+  text-align: center;
 }
 
-.contactIcon {
-  flex-shrink: 0;
-  margin-top: 0.3em;
-  color: var(--accent-400);
+.countriesHeading {
+  margin-bottom: var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-inverse);
 }
 
-.address {
-  display: flex;
-  flex-direction: column;
-  font-style: normal;
-}
-
-.bottom {
+.chips {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3) var(--space-5);
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.chip {
+  padding: 0.35rem 0.9rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-inverse);
+  border-radius: 999px;
+  font-size: var(--step--1);
+  color: var(--text-inverse);
+  white-space: nowrap;
+}
+
+/* ---------- Social row ---------- */
+.socialRow {
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: var(--space-5);
+  padding-block: var(--space-5);
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border-inverse);
+}
+
+.socials {
+  display: flex;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border-inverse);
+  border-radius: 50%;
+  color: var(--text-inverse);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.socialLink:hover {
+  background: var(--brand-700);
+  border-color: var(--brand-700);
+  transform: translateY(-2px);
+}
+
+/* ---------- Bottom ---------- */
+.bottom {
   padding-block: var(--space-5);
   border-top: 1px solid var(--border-inverse);
+  text-align: center;
+}
+
+.registrations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-6);
+  margin: 0 0 var(--space-2);
+  color: var(--text-inverse);
+  font-weight: 600;
+}
+
+.registration {
+  font-variant-numeric: tabular-nums;
 }
 
 .copyright {
   margin: 0;
+  color: var(--text-inverse-muted);
 }
 
-.legal {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-5);
-  margin: 0;
+@media (prefers-reduced-motion: reduce) {
+  .socialLink:hover,
+  .link:hover .chevron {
+    transform: none;
+  }
 }
 
+/* ---------- Breakpoints ---------- */
 @media (min-width: 40rem) {
   .top {
     grid-template-columns: repeat(2, 1fr);
@@ -122,8 +265,9 @@
 
 @media (min-width: 64rem) {
   .top {
-    /* Brand column takes the wider track. */
-    grid-template-columns: 1.6fr repeat(3, 1fr);
+    /* Brand takes the widest track; the contact column gets extra room so the
+       email address is not forced to break mid-word. */
+    grid-template-columns: 1.35fr 0.9fr 1.05fr 1.35fr;
     gap: var(--space-6);
   }
 }
