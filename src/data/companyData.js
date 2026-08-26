@@ -543,4 +543,19 @@ export const footer = {
    * "Compliance" column in the footer.
    */
   legalLinks: [],
+  /**
+   * Developer credit, shown at the bottom-left of the footer.
+   * `url` is empty because no site was supplied -- set it and the name
+   * becomes a link, otherwise it renders as plain text.
+   */
+  credit: {
+    prefix: 'Developed by',
+    name: 'Rise and Shine',
+    url: '',
+  },
+  /** Action shown at the bottom-right of the footer. */
+  workWithUs: {
+    label: 'Work with us',
+    href: '#contact',
+  },
 };

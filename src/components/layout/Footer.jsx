@@ -1,4 +1,4 @@
-import { ChevronRight, Clock, Globe, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, ChevronRight, Clock, Globe, Mail, MapPin, Phone } from 'lucide-react';
 import {
   company, contact, footer, navigation, services, socials,
 } from '../../data/companyData';
@@ -225,6 +225,35 @@ export function Footer({ availableSections }) {
           </p>
           <p className={styles.copyright}>{copyright}</p>
         </div>
+
+        {(footer.credit?.name || footer.workWithUs?.label) && (
+          <div className={styles.bottomBar}>
+            {footer.credit?.name && (
+              <p className={styles.credit}>
+                {footer.credit.prefix}{' '}
+                {footer.credit.url ? (
+                  <a
+                    href={footer.credit.url}
+                    className={styles.creditLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {footer.credit.name}
+                  </a>
+                ) : (
+                  <span className={styles.creditName}>{footer.credit.name}</span>
+                )}
+              </p>
+            )}
+
+            {footer.workWithUs?.label && (
+              <a href={footer.workWithUs.href} className={styles.workLink}>
+                {footer.workWithUs.label}
+                <ArrowRight size={15} aria-hidden="true" className={styles.workArrow} />
+              </a>
+            )}
+          </div>
+        )}
       </Container>
     </footer>
   );
