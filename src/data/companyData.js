@@ -17,7 +17,6 @@ import noticeImage from '../assets/notices/name-change-notice.jpg';
 import logoFull from '../assets/logo/logo-full.png';
 import logoMark from '../assets/logo/logo-mark.png';
 import heroCollage from '../assets/hero/hero-collage.jpg';
-import nepalMap from '../assets/about/nepal-map.jpg';
 import aboutDeparture from '../assets/about/departure-hall.jpg';
 
 import chairmanPhoto from '../assets/leadership/chairman.jpg';
@@ -465,15 +464,40 @@ export const partners = {
 /** No testimonials appear in the company profile. */
 export const testimonials = { eyebrow: '', heading: '', items: [] };
 
-/** Country context, from the "About Nepal" page of the profile. */
+/**
+ * Country context for employers considering Nepali workers.
+ *
+ * The first four sentences come from the "About Nepal" page of the company
+ * profile. The remaining paragraphs and the facts table add standing public
+ * information about Nepal -- capital, language, currency, time zone, gateway
+ * airport -- which is general knowledge rather than a company claim.
+ *
+ * Two wordings differ deliberately from the profile: it states Nepal is "the
+ * 2nd richest country in the world in water resources" and that Tilicho Lake
+ * is "the highest lake in the world". Both superlatives are contested, so they
+ * are given here as "among the richest" and "one of the highest". Restore the
+ * profile's original wording if you would rather keep it.
+ */
 export const aboutNepal = {
   eyebrow: 'Where our workers come from',
   heading: 'About Nepal',
+  lead:
+    'Nepal is a mountainous, landlocked country set between two giant neighbours — China to the north, and India to the south, east and west.',
   body: [
-    'Nepal is a mountainous and landlocked country situated between two giant neighbours — China to the north and India to the south, east and west.',
-    'Nepal boasts the highest peak in the world, Mount Everest, and visitors from all over the world come to climb it and to see the panorama of snow-capped mountains and historic monuments. Nepal is also the second richest country in the world in water resources, with a substantial number of rivers and streams flowing south from the high Himalayas, and Tilicho Lake — the highest lake in the world — lies within its borders.',
+    'The country holds Mount Everest, the highest peak in the world, and eight of the fourteen mountains that rise above 8,000 metres stand within its borders. Visitors travel from all over the world to climb them and to see the panorama of snow-capped mountains and the historic monuments of the Kathmandu Valley.',
+    'Nepal is among the richest countries in the world in water resources, with a substantial number of rivers and streams flowing south from the high Himalayas. Tilicho Lake, one of the highest lakes in the world, lies within its borders.',
+    "Kathmandu, the capital, is the country's administrative and commercial centre. It is also the seat of the Department of Foreign Employment — the authority that pre-approves recruitment and grants final approval for every overseas placement made from Nepal.",
+    'Tribhuvan International Airport in Kathmandu is the main international gateway and the point from which workers depart for their placements abroad. Nepali is the official language, and English is widely used in business and education.',
   ],
-  image: { src: nepalMap, alt: 'Map showing Nepal in relation to the wider world' },
+  /** Standing reference facts, shown as an "at a glance" table. */
+  facts: [
+    { label: 'Capital', value: 'Kathmandu' },
+    { label: 'Official language', value: 'Nepali' },
+    { label: 'Currency', value: 'Nepalese Rupee (NPR)' },
+    { label: 'Time zone', value: 'Nepal Time (UTC+05:45)' },
+    { label: 'Highest point', value: 'Mount Everest — 8,848.86 m' },
+    { label: 'International gateway', value: 'Tribhuvan International Airport' },
+  ],
 };
 
 export const cta = {

@@ -27,7 +27,7 @@ The company profile PDF is 14 pages. Everything on the site comes from it:
 | 9–11 | Twelve job categories and their roles | Job Categories |
 | 12 | 23 client logos; documents required | Valued Clients; Documents required |
 | 13 | Four certificates and licences | Licences & Certificates |
-| 14 | About Nepal; back-cover contact details | About Nepal, Contact, Footer |
+| 14 | About Nepal; back-cover contact details | About Nepal (text only), Contact, Footer |
 
 ## 2. Corrections made to the source text
 
@@ -45,6 +45,12 @@ any of these in `companyData.js` if you would rather keep the original.
 | Architecture (as a role) | Architect |
 | Gulf(Carrier) | Golf (Carrier) |
 | ZipsonWorker | Zipson Worker (spacing only — the intended trade is unclear, so the word is left as printed) |
+
+In the About Nepal section, two superlatives from page 14 are softened
+because both are contested: "the 2nd richest country in the world in water
+resources" reads as "among the richest", and Tilicho Lake as "one of the
+highest lakes in the world" rather than "the highest". The original wording is
+noted in `companyData.js` if you would rather restore it.
 
 Left exactly as printed because the intended meaning is genuinely uncertain:
 **Sit Fitter** and **Sit Fabricator** (possibly "Site"), and **Velocy** under
@@ -75,7 +81,7 @@ Everything in `src/assets/` was extracted from the PDF:
 src/assets/
 ├── logo/            logo-full.png (complete lockup), logo-mark.png (bridge device)
 ├── hero/            hero-collage.jpg — the cover collage
-├── about/           departure-hall.jpg, nepal-map.jpg
+├── about/           departure-hall.jpg
 ├── leadership/      three portraits (see the gap noted below)
 ├── categories/      one photograph per job category
 ├── certifications/  the four certificates from page 13

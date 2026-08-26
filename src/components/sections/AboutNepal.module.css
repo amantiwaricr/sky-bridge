@@ -1,8 +1,6 @@
-.layout {
-  display: grid;
-  gap: var(--space-6);
-  align-items: center;
-  grid-template-columns: 1fr;
+.intro {
+  max-width: 62ch;
+  margin-bottom: var(--space-6);
 }
 
 .eyebrow {
@@ -15,22 +13,92 @@
 }
 
 .heading {
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.lead {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  color: var(--text);
+}
+
+/* Two measured columns rather than one very wide one -- with no image to
+   break the block up, full-width prose would run past a comfortable line
+   length on a large screen. */
+.prose {
+  display: grid;
+  gap: var(--space-4) var(--space-7);
+  margin-bottom: var(--space-7);
+  grid-template-columns: 1fr;
 }
 
 .paragraph {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 68ch;
+}
+
+/* ---------- At a glance ---------- */
+.factsHeading {
   margin-bottom: var(--space-4);
-  max-width: 62ch;
+  padding-bottom: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-5) var(--space-4);
+  margin: 0;
+  /* Explicit column counts rather than auto-fit: six facts under auto-fit
+     land as five plus a stranded orphan on the next row. */
+  grid-template-columns: 1fr;
+}
+
+.fact {
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--brand-200);
+  transition: border-left-color var(--dur) var(--ease);
+}
+
+.fact:hover {
+  border-left-color: var(--accent-500);
+}
+
+.factLabel {
+  margin-bottom: var(--space-1);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-muted);
 }
 
-.figure {
-  border: 1px solid var(--border);
+.factValue {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text);
+  text-wrap: balance;
 }
 
-@media (min-width: 62rem) {
-  .layout {
-    grid-template-columns: 1fr 1.1fr;
-    gap: var(--space-8);
+@media (min-width: 30rem) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 56rem) {
+  .prose {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
