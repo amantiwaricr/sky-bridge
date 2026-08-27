@@ -14,6 +14,36 @@ const FIELDS = [
 
 const EMPTY = { name: '', email: '', phone: '', company: '', message: '' };
 
+/**
+ * Some mail clients (Outlook among them) drop mailto: links beyond roughly
+ * 2,000 characters, which would fail silently. The message field is capped
+ * below that, and this is the belt-and-braces check on the finished URL.
+ */
+const MAILTO_LIMIT = 2000;
+const MESSAGE_LIMIT = 1200;
+
+/** Builds a mailto: URL carrying the enquiry as a ready-to-send draft. */
+function buildMailto(recipient, values) {
+  if (!recipient) return '';
+
+  const subject = values.company
+    ? `Website enquiry from ${values.name} (${values.company})`
+    : `Website enquiry from ${values.name}`;
+
+  // Built in two parts on purpose: an empty string means "omit this optional
+  // line", so it cannot also serve as the blank line before the message.
+  const details = [
+    `Name: ${values.name}`,
+    `Email: ${values.email}`,
+    values.phone ? `Phone: ${values.phone}` : null,
+    values.company ? `Company: ${values.company}` : null,
+  ].filter(Boolean);
+
+  const body = `${details.join('\n')}\n\n${values.message}`;
+
+  return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 function validate(values) {
   const errors = {};
   if (!values.name.trim()) errors.name = 'Please enter your name.';
@@ -33,18 +63,20 @@ function validate(values) {
 /**
  * Client-side validated enquiry form.
  *
- * There is no backend yet. Rather than faking a successful send, the form
- * validates and then hands the user a mailto: link pre-filled with what they
- * typed, so the enquiry still reaches the company.
+ * With no backend configured, submitting opens the visitor's own mail client
+ * on a draft addressed to the company, pre-filled with everything they typed.
+ * Nothing leaves the browser by itself -- the visitor still presses send in
+ * their mail app -- so the form never claims to have sent anything.
  *
  * TO WIRE UP A REAL BACKEND: set `contact.formEndpoint` in companyData.js.
- * The submit handler below will POST the values there as JSON.
+ * The submit handler then POSTs the values there as JSON instead.
  */
 export function ContactForm() {
   const formId = useId();
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | submitting | sent | error | no-endpoint
+  // idle | submitting | sent | error | mail-opened | too-long | no-recipient
+  const [status, setStatus] = useState('idle');
 
   const recipient = contact.emails[0] ?? '';
 
@@ -65,8 +97,22 @@ export function ContactForm() {
       return;
     }
 
+    // No backend: hand the enquiry to the visitor's mail client as a draft.
     if (!contact.formEndpoint) {
-      setStatus('no-endpoint');
+      if (!recipient) {
+        setStatus('no-recipient');
+        return;
+      }
+
+      const href = buildMailto(recipient, values);
+      if (href.length > MAILTO_LIMIT) {
+        setStatus('too-long');
+        return;
+      }
+
+      // Assigning a mailto: hands off to the OS handler; the page stays put.
+      window.location.href = href;
+      setStatus('mail-opened');
       return;
     }
 
@@ -85,22 +131,7 @@ export function ContactForm() {
     }
   };
 
-  const mailtoHref = recipient
-    ? `mailto:${recipient}?subject=${encodeURIComponent(
-        `Website enquiry from ${values.name}`
-      )}&body=${encodeURIComponent(
-        [
-          `Name: ${values.name}`,
-          `Email: ${values.email}`,
-          values.phone && `Phone: ${values.phone}`,
-          values.company && `Company: ${values.company}`,
-          '',
-          values.message,
-        ]
-          .filter(Boolean)
-          .join('\n')
-      )}`
-    : '';
+  const mailtoHref = buildMailto(recipient, values);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -155,6 +186,7 @@ export function ContactForm() {
             value={values.message}
             onChange={handleChange}
             required
+            maxLength={MESSAGE_LIMIT}
             aria-invalid={errors.message ? 'true' : undefined}
             aria-describedby={errors.message ? `${formId}-message-error` : undefined}
             className={[styles.input, styles.textarea, errors.message ? styles.inputError : '']
@@ -202,24 +234,43 @@ export function ContactForm() {
           </p>
         )}
 
-        {status === 'no-endpoint' && (
-          <p className={styles.failure}>
-            {recipient ? (
+        {status === 'mail-opened' && (
+          <p className={styles.success}>
+            Your email app should now be open with this enquiry ready to go —
+            <strong> press send there to deliver it</strong>.
+            {recipient && (
               <>
-                This form is not connected to a mail service yet. Use the button
-                below to send the same details by email instead.{' '}
+                {' '}
+                If nothing opened, email us directly at{' '}
+                <a href={`mailto:${recipient}`} className={styles.inlineLink}>
+                  {recipient}
+                </a>
+                , or{' '}
                 <a href={mailtoHref} className={styles.inlineLink}>
-                  Open your email client
+                  try opening the draft again
                 </a>
                 .
               </>
-            ) : (
-              <>
-                This form is not connected to a mail service yet. Add a contact
-                email or a form endpoint in <code>companyData.js</code> to enable
-                submissions.
-              </>
             )}
+          </p>
+        )}
+
+        {status === 'too-long' && (
+          <p className={styles.failure}>
+            This message is too long to hand to an email app. Please shorten it,
+            or email us directly at{' '}
+            <a href={`mailto:${recipient}`} className={styles.inlineLink}>
+              {recipient}
+            </a>
+            .
+          </p>
+        )}
+
+        {status === 'no-recipient' && (
+          <p className={styles.failure}>
+            No contact email is configured yet. Add one to{' '}
+            <code>contact.emails</code> in <code>companyData.js</code> to enable
+            this form.
           </p>
         )}
       </div>
