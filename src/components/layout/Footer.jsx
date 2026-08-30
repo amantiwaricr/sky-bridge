@@ -1,4 +1,5 @@
 import { ArrowRight, ChevronRight, Clock, Globe, Mail, MapPin, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import {
   company, contact, footer, navigation, services, socials,
 } from '../../data/companyData';
@@ -7,12 +8,12 @@ import { Icon } from '../ui/Icon';
 import styles from './Footer.module.css';
 
 /** A footer link with the small leading chevron used throughout the columns. */
-function FooterLink({ href, children }) {
+function FooterLink({ to, children }) {
   return (
-    <a href={href} className={styles.link}>
+    <Link to={to} className={styles.link}>
       <ChevronRight size={14} aria-hidden="true" className={styles.chevron} />
       <span>{children}</span>
-    </a>
+    </Link>
   );
 }
 
@@ -34,9 +35,9 @@ function ContactRow({ icon: Glyph, children }) {
  * Every block is driven by companyData and renders only when it has content,
  * so nothing here ever links to a page that does not exist.
  */
-export function Footer({ availableSections }) {
+export function Footer() {
   const year = new Date().getFullYear();
-  const quickLinks = navigation.filter((item) => availableSections.includes(item.id));
+  const quickLinks = navigation;
   const categories = services.items.slice(0, 8);
   const office = contact.offices[0];
 
@@ -82,8 +83,8 @@ export function Footer({ availableSections }) {
               </h2>
               <ul className={styles.list}>
                 {quickLinks.map((item) => (
-                  <li key={item.id}>
-                    <FooterLink href={`#${item.id}`}>{item.label}</FooterLink>
+                  <li key={item.to}>
+                    <FooterLink to={item.to}>{item.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -96,7 +97,7 @@ export function Footer({ availableSections }) {
               <ul className={styles.list}>
                 {categories.map((category) => (
                   <li key={category.title}>
-                    <FooterLink href="#services">{category.title}</FooterLink>
+                    <FooterLink to="/jobs">{category.title}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -110,7 +111,7 @@ export function Footer({ availableSections }) {
               <ul className={styles.list}>
                 {footer.legalLinks.map((item) => (
                   <li key={item.label}>
-                    <FooterLink href={item.href}>{item.label}</FooterLink>
+                    <FooterLink to={item.href}>{item.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -247,10 +248,10 @@ export function Footer({ availableSections }) {
             )}
 
             {footer.workWithUs?.label && (
-              <a href={footer.workWithUs.href} className={styles.workLink}>
+              <Link to={footer.workWithUs.href} className={styles.workLink}>
                 {footer.workWithUs.label}
                 <ArrowRight size={15} aria-hidden="true" className={styles.workArrow} />
-              </a>
+              </Link>
             )}
           </div>
         )}

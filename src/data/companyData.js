@@ -107,19 +107,23 @@ export const seo = {
   ogImage: null,
 };
 
-/** Single-word labels keep the header on one line down to the mobile breakpoint. */
+/**
+ * Primary navigation. Each entry is a route; the labels stay single words so
+ * the header holds one line down to the mobile breakpoint.
+ * Routes themselves live in pagesData.js.
+ */
 export const navigation = [
-  { id: 'about', label: 'About' },
-  { id: 'mission', label: 'Purpose' },
-  { id: 'services', label: 'Jobs' },
-  { id: 'process', label: 'Process' },
-  { id: 'leadership', label: 'Team' },
-  { id: 'partners', label: 'Clients' },
-  { id: 'certifications', label: 'Licences' },
-  { id: 'contact', label: 'Contact' },
+  { to: '/about', label: 'About' },
+  { to: '/purpose', label: 'Purpose' },
+  { to: '/jobs', label: 'Jobs' },
+  { to: '/process', label: 'Process' },
+  { to: '/team', label: 'Team' },
+  { to: '/clients', label: 'Clients' },
+  { to: '/licences', label: 'Licences' },
+  { to: '/contact', label: 'Contact' },
 ];
 
-export const primaryCta = { label: 'Request Manpower', href: '#contact' };
+export const primaryCta = { label: 'Request Manpower', href: '/contact' };
 
 export const hero = {
   eyebrow: 'Government-licensed manpower agency · Kathmandu, Nepal',
@@ -127,7 +131,7 @@ export const hero = {
   subheadline:
     'Sky Bridge Overseas recruits and deploys skilled, semi-skilled and unskilled Nepali workers for employers worldwide — under full Government of Nepal licence.',
   image: { src: heroCollage, alt: 'Nepali workers across construction, retail, healthcare and hospitality roles' },
-  secondaryCta: { label: 'View Job Categories', href: '#services' },
+  secondaryCta: { label: 'View Job Categories', href: '/jobs' },
   highlights: [
     'Licence No. 1166/073/074',
     'Established 2017',
@@ -556,6 +560,6 @@ export const footer = {
   /** Action shown at the bottom-right of the footer. */
   workWithUs: {
     label: 'Work with us',
-    href: '#contact',
+    href: '/contact',
   },
 };

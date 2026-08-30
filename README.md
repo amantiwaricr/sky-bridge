@@ -33,12 +33,45 @@ is not on the page.
 Editing the site is therefore a one-file job: change `companyData.js`, and the
 page follows.
 
-## Sections
+## Pages
 
-Hero · Statistics · About · Mission, Vision & Values · Job Categories ·
-Recruitment Process (with documents required) · Leadership and organisational
-structure · Valued Clients · Licences & Certificates · About Nepal ·
-Call to action · Contact (form + map) · Footer
+The home page is a single scrolling overview. Each navigation item is its own
+route with fuller detail:
+
+| Route | Page |
+| --- | --- |
+| `/` | Home — hero, statistics, and a summary of every section |
+| `/about` | Company background, legal standing, how employer engagements work |
+| `/purpose` | Mission, vision, the three values, and what they ask for in practice |
+| `/jobs` | All twelve categories in detail, with skill levels and every role |
+| `/process` | The six steps, the two government approvals, documents, employer checklist |
+| `/team` | The four signatories, their messages, the organisation and its functions |
+| `/clients` | The client logos, the sectors they represent, becoming a client |
+| `/licences` | Each registration explained, licence conditions, how to verify an agency |
+| `/contact` | Enquiry routes, the form, what happens next, practical notes |
+
+Anything not matching a route renders a 404 page listing the others.
+
+Longer-form page copy lives in `src/data/pagesData.js`, separate from
+`companyData.js` which holds the facts. That file opens with a note on what is
+safe to write there: everything is either taken from the company profile or
+generally true independent of the company. No deployment figures, case
+studies, testimonials or turnaround times are asserted anywhere, because the
+profile does not state them. Search it for `TO CONFIRM` to find the places
+where the company needs to supply its own specifics.
+
+## Deploying
+
+This is a single-page app with client-side routing, so the server must return
+`index.html` for any path — otherwise a direct hit on `/jobs`, or a refresh,
+returns a 404 from the host rather than the app.
+
+- **Netlify** — handled by `public/_redirects`, already in the repo.
+- **Vercel** — handled by `vercel.json`, already in the repo.
+- **Apache** — add a `.htaccess` rewriting all non-file requests to `/index.html`.
+- **nginx** — `try_files $uri $uri/ /index.html;`
+- **GitHub Pages** — has no rewrite support; copy `index.html` to `404.html`
+  after building, or switch to `HashRouter` in `src/main.jsx`.
 
 ## Structure
 
@@ -50,10 +83,11 @@ src/
 │   ├── ui/         Button, Card, Grid, Section, SectionHeading, Figure, Icon, Reveal
 │   └── dev/        Development-only content checklist (hides itself when complete)
 ├── data/
-│   ├── companyData.js      All site content — the file to edit
-│   └── sectionRegistry.js  Which sections have content
+│   ├── companyData.js      Company facts — the file to edit first
+│   ├── pagesData.js        Long-form copy for the individual pages
+│   └── sectionRegistry.js  Which home-page sections have content
 ├── hooks/          Reveal, count-up, active section, scroll lock, meta, hash scroll
-├── pages/Home.jsx  Section running order
+├── pages/          Home plus one component per route
 ├── styles/
 │   ├── tokens.css  Design system — brand colours sampled from the profile PDF
 │   └── base.css    Reset, base elements, focus, utilities
@@ -62,8 +96,8 @@ src/
 └── main.jsx
 ```
 
-Styling is plain CSS Modules — no CSS framework. All design decisions route
-through the custom properties in `tokens.css`.
+Routing is React Router. Styling is plain CSS Modules — no CSS framework. All
+design decisions route through the custom properties in `tokens.css`.
 
 ## Design and accessibility notes
 

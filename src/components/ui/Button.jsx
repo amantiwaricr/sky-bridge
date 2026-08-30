@@ -1,8 +1,14 @@
+import { Link } from 'react-router-dom';
 import styles from './Button.module.css';
 
+const isExternal = (href) => /^(https?:|mailto:|tel:)/.test(href);
+const isInPageAnchor = (href) => href.startsWith('#');
+
 /**
- * Renders an <a> when given `href` and a <button> otherwise, so an action is
- * never a clickable div and keyboard behaviour matches what the user sees.
+ * Renders whichever element matches the destination, so an action is never a
+ * clickable div and keyboard behaviour matches what the user sees:
+ * a router Link for internal routes, a plain anchor for external links,
+ * mail/phone links and in-page anchors, and a button when there is no href.
  */
 export function Button({
   href,
@@ -17,16 +23,32 @@ export function Button({
     .join(' ');
 
   if (href) {
-    const external = /^https?:\/\//.test(href);
+    if (isExternal(href)) {
+      const newTab = href.startsWith('http');
+      return (
+        <a
+          href={href}
+          className={classes}
+          {...(newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          {...rest}
+        >
+          {children}
+        </a>
+      );
+    }
+
+    if (isInPageAnchor(href)) {
+      return (
+        <a href={href} className={classes} {...rest}>
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <a
-        href={href}
-        className={classes}
-        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        {...rest}
-      >
+      <Link to={href} className={classes} {...rest}>
         {children}
-      </a>
+      </Link>
     );
   }
 

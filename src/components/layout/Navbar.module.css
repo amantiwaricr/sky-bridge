@@ -69,12 +69,12 @@
   color: var(--text);
 }
 
-.navLink[aria-current='true'] {
+.navLink[aria-current='page'] {
   color: var(--primary);
   font-weight: 600;
 }
 
-.navLink[aria-current='true']::after {
+.navLink[aria-current='page']::after {
   transform: scaleX(1);
 }
 
@@ -149,8 +149,13 @@
   transition: color var(--dur) var(--ease);
 }
 
-.drawerLink:hover {
+.drawerLink:hover,
+.drawerLink[aria-current='page'] {
   color: var(--primary);
+}
+
+.drawerLink[aria-current='page'] {
+  font-weight: 700;
 }
 
 .drawerCta {

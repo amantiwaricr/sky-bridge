@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { navigation, primaryCta } from '../../data/companyData';
 import { useScrolled } from '../../hooks/useScrollPosition';
-import { useActiveSection } from '../../hooks/useActiveSection';
 import { useLockBodyScroll } from '../../hooks/useLockBodyScroll';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
@@ -10,24 +10,24 @@ import { Logo } from './Logo';
 import styles from './Navbar.module.css';
 
 /**
- * Fixed header with in-page navigation and a mobile drawer.
- * Only links whose target section actually rendered are shown, so removing
- * content from companyData.js never leaves a dead nav link behind.
+ * Fixed header with route navigation and a mobile drawer.
+ * Active state comes from the router, so the current page is marked whatever
+ * the scroll position.
  */
-export function Navbar({ availableSections }) {
+export function Navbar() {
   const [open, setOpen] = useState(false);
   const scrolled = useScrolled();
   const menuId = useId();
   const toggleRef = useRef(null);
-
-  const links = useMemo(
-    () => navigation.filter((item) => availableSections.includes(item.id)),
-    [availableSections]
-  );
-
-  const activeId = useActiveSection(useMemo(() => links.map((l) => l.id), [links]));
+  const { pathname } = useLocation();
 
   const close = useCallback(() => setOpen(false), []);
+
+  // Close the drawer when the route changes, so tapping a link in the drawer
+  // does not leave it covering the page it just navigated to.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
   useLockBodyScroll(open);
 
   // Escape closes the drawer and returns focus to the control that opened it.
@@ -54,21 +54,17 @@ export function Navbar({ availableSections }) {
   return (
     <header className={[styles.header, scrolled ? styles.scrolled : ''].join(' ')}>
       <Container className={styles.inner}>
-        <a href="#top" className={styles.brand} onClick={close}>
+        <NavLink to="/" className={styles.brand} onClick={close}>
           <Logo />
-        </a>
+        </NavLink>
 
         <nav className={styles.desktopNav} aria-label="Primary">
           <ul className={styles.navList}>
-            {links.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className={styles.navLink}
-                  aria-current={activeId === item.id ? 'true' : undefined}
-                >
+            {navigation.map((item) => (
+              <li key={item.to}>
+                <NavLink to={item.to} className={styles.navLink}>
                   {item.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -103,11 +99,11 @@ export function Navbar({ availableSections }) {
       >
         <nav aria-label="Mobile">
           <ul className={styles.drawerList}>
-            {links.map((item) => (
-              <li key={item.id}>
-                <a href={`#${item.id}`} className={styles.drawerLink} onClick={close}>
+            {navigation.map((item) => (
+              <li key={item.to}>
+                <NavLink to={item.to} className={styles.drawerLink} onClick={close}>
                   {item.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>

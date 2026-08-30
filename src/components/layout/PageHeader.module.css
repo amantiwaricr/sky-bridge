@@ -1,0 +1,54 @@
+.header {
+  /* Clears the fixed navbar, which sits above this band. */
+  padding-top: calc(var(--header-h) + var(--space-7));
+  padding-bottom: var(--space-7);
+  background: var(--banner-gradient);
+  color: var(--text-inverse);
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  font-size: var(--step--1);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.crumbLink {
+  transition: color var(--dur) var(--ease);
+}
+
+.crumbLink:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.crumbIcon {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.eyebrow {
+  margin-bottom: var(--space-2);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.title {
+  margin: 0;
+  max-width: 20ch;
+  color: var(--text-inverse);
+}
+
+.lead {
+  margin: var(--space-4) 0 0;
+  max-width: 62ch;
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  color: rgba(255, 255, 255, 0.92);
+}
