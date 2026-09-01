@@ -1,0 +1,11 @@
+<!-- Bridge device from the Sky Bridge Overseas logo, in the brand blue. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="9" fill="#0071A7"/>
+  <g fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round">
+    <path d="M13 22v22M51 22v22"/>
+    <path d="M13 22h38"/>
+    <path d="M13 26c10 0 12 12 19 12s9-12 19-12"/>
+    <path d="M8 45c12-9 36-9 48 0"/>
+    <path d="M32 30v14"/>
+  </g>
+</svg>
