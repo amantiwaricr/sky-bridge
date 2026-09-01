@@ -20,6 +20,26 @@ npm run preview  # serve the production build
 npm run lint     # eslint
 ```
 
+### Uploading a build to cPanel
+
+Compress `dist/` as **`.tar.gz`, not `.zip`**:
+
+```bash
+npm run build
+tar -czf sky-dist.tar.gz -C dist .
+```
+
+Upload that and extract it in the File Manager. Many hosts run ClamAV with
+the unofficial Sanesecurity "Foxhole" signature set, which rejects any ZIP
+containing a `.js` file — `Sanesecurity.Foxhole.JS_Zip_*` — because that is a
+common malware-delivery shape. Every JavaScript build trips it. A gzipped tar
+carries the same files and is not matched by those signatures. Uploading the
+files directly, without an archive, works too.
+
+Extract the archive **into the folder itself**, not into a `dist` subfolder,
+and check that the hidden `.htaccess` came across — File Manager hides
+dotfiles until you enable "Show Hidden Files" in its settings.
+
 Node 18+ is required.
 
 ## How it works
@@ -68,7 +88,11 @@ returns a 404 from the host rather than the app.
 
 - **Netlify** — handled by `public/_redirects`, already in the repo.
 - **Vercel** — handled by `vercel.json`, already in the repo.
-- **Apache** — add a `.htaccess` rewriting all non-file requests to `/index.html`.
+- **Apache / cPanel** — handled by `public/.htaccess`, which Vite copies into
+  `dist/`. It also sets long cache lifetimes for the content-hashed assets and
+  `no-cache` on `index.html`, so a returning visitor never keeps loading the
+  previous build's asset names. Serving from a subfolder needs `RewriteBase`
+  adjusting and a matching `vite build --base=`; the file says how.
 - **nginx** — `try_files $uri $uri/ /index.html;`
 - **GitHub Pages** — has no rewrite support; copy `index.html` to `404.html`
   after building, or switch to `HashRouter` in `src/main.jsx`.

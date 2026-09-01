@@ -1,0 +1,59 @@
+# Apache / cPanel configuration for this single-page app.
+# Vite copies everything in public/ into dist/, so this ships with the build.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve real files and directories untouched (assets, images, robots.txt).
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else is a client-side route: hand it to the app, so a direct
+  # hit on /jobs or a refresh loads the site instead of an Apache 404.
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# If the site is served from a subfolder rather than the domain root, set
+# RewriteBase and the rewrite target to that folder, e.g.
+#   RewriteBase /sky/
+#   RewriteRule . /sky/index.html [L]
+# and build with `vite build --base=/sky/`.
+
+<IfModule mod_mime.c>
+  AddType application/javascript            .js
+  AddType text/css                          .css
+  AddType image/webp                        .webp
+  AddType image/svg+xml                     .svg
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Asset filenames carry a content hash, so a given name never changes.
+  <FilesMatch "\.(js|css|woff2?|jpe?g|png|webp|svg|ico)$">
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+
+  # The entry document must always be revalidated, or a returning visitor
+  # keeps loading the old asset names after a deploy.
+  <FilesMatch "\.html$">
+    ExpiresDefault "access plus 0 seconds"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|jpe?g|png|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
