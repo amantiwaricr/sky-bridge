@@ -8,3 +8,8 @@ dist-ssr
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Build output must not be committed; publish from a fresh `npm run build`.
+sky-dist/
+sky.zip
+*.zip

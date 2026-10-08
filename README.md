@@ -1,8 +1,14 @@
-# Sky Bridge Overseas Pvt. Ltd. — corporate website
+# Future Nest International Pvt. Ltd. — corporate website
 
-A React + Vite single-page website for Sky Bridge Overseas Pvt. Ltd., a
-government-licensed manpower recruitment agency based in Tokha-10, Kathmandu,
-Nepal.
+A React + Vite website for Future Nest International Pvt. Ltd. — formerly Sky
+Bridge Overseas Pvt. Ltd. — a government-licensed manpower recruitment agency
+based in Tokha-10, Kathmandu, Nepal.
+
+The company was renamed; the change was published by the Department of Foreign
+Employment. The company registration (164997/073/074) and foreign employment
+licence (1166/073/074) are unchanged by it, so the certificates reproduced on
+the site are still issued in the former name and the site says so where they
+appear.
 
 All content, imagery, and brand colours are taken from the company's own
 profile document. Nothing is invented — see

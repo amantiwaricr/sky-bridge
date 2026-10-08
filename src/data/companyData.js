@@ -3,8 +3,9 @@
  * SINGLE SOURCE OF TRUTH FOR ALL SITE CONTENT
  * ============================================================================
  *
- * Every value here is transcribed from the Sky Bridge Overseas company profile
- * PDF. Nothing is invented. Where the source had an unambiguous typo it has
+ * Every value here is transcribed from the company profile document (issued
+ * under the former name, Sky Bridge Overseas Pvt. Ltd.). Nothing is invented.
+ * Where the source had an unambiguous typo it has
  * been corrected -- those corrections are listed in CONTENT-GUIDE.md so they
  * can be reviewed or reverted.
  *
@@ -13,9 +14,7 @@
  * ============================================================================
  */
 
-import noticeImage from '../assets/notices/name-change-notice.jpg';
-import logoFull from '../assets/logo/logo-full.png';
-import logoMark from '../assets/logo/logo-mark.png';
+import logoMark from '../assets/logo/logo-mark.webp';
 import heroCollage from '../assets/hero/hero-collage.webp';
 import aboutDeparture from '../assets/about/departure-hall.jpg';
 
@@ -66,41 +65,31 @@ import logoWecan from '../assets/partners/wecan-industries.jpg';
 import logoYcsg from '../assets/partners/ycsg-industrail.jpg';
 
 export const company = {
-  name: 'Sky Bridge Overseas Pvt. Ltd.',
-  shortName: 'Sky Bridge Overseas',
-  tagline: 'Workforce solutions and services',
-  logo: { src: logoFull, alt: 'Sky Bridge Overseas Manpower Agency' },
+  name: 'Future Nest International Pvt. Ltd.',
+  shortName: 'Future Nest International',
+  tagline: 'Your Future, Our Global Connection',
+  logo: { src: logoMark, alt: 'Future Nest International Pvt. Ltd.' },
   logoMark: { src: logoMark, alt: '' },
+  /**
+   * The company was renamed from Sky Bridge Overseas Pvt. Ltd. The change was
+   * published by the Department of Foreign Employment; the registration and
+   * licence numbers below are unchanged by it, and the certificates
+   * reproduced on the site are still issued in the former name.
+   */
+  formerName: 'Sky Bridge Overseas Pvt. Ltd.',
   founded: '2017',
-  website: 'http://www.sbo.com.np',
+  // TO CONFIRM: the business card gives the website as "www." only, and the
+  // previous address (sbo.com.np) belongs to the former name. Set the new
+  // domain here and it reappears in the footer and on the contact page.
+  website: '',
   /** Statutory registrations printed on the cover and company profile page. */
   licenceNumber: '1166/073/074',
   registrationNumber: '164997/073/074',
   serviceType: 'Manpower Supply',
 };
 
-/**
- * Public notice shown in a modal when the site loads.
- *
- * This is the Department of Foreign Employment's published notice of the
- * company's registered name change. Set `enabled: false` to stop showing it
- * once the objection period has passed and the change is complete.
- */
-export const launchNotice = {
-  enabled: true,
-  title: 'Public Notice',
-  /** false = shows on every visit; true = shows once per browser tab session. */
-  showOncePerSession: false,
-  dismissLabel: 'Continue to website',
-  image: {
-    src: noticeImage,
-    alt:
-      'Public notice from the Department of Foreign Employment, Kathmandu, inviting objections to the change of the company\'s registered name from Sky Bridge Overseas Pvt. Ltd. to Future Nest International Pvt. Ltd. Licence number 1166/073/74.',
-  },
-};
-
 export const seo = {
-  title: 'Sky Bridge Overseas Pvt. Ltd. — Manpower Agency in Kathmandu, Nepal',
+  title: 'Future Nest International Pvt. Ltd. — Manpower Agency in Kathmandu, Nepal',
   description:
     'Government-licensed Nepali manpower recruitment agency supplying skilled, semi-skilled and unskilled workers to employers overseas. Licence No. 1166/073/074.',
   siteUrl: '',
@@ -129,7 +118,7 @@ export const hero = {
   eyebrow: 'Government-licensed manpower agency · Kathmandu, Nepal',
   headline: 'People. Knowledge. Innovation.',
   subheadline:
-    'Sky Bridge Overseas recruits and deploys skilled, semi-skilled and unskilled Nepali workers for employers worldwide — under full Government of Nepal licence.',
+    'Future Nest International recruits and deploys skilled, semi-skilled and unskilled Nepali workers for employers worldwide — under full Government of Nepal licence.',
   image: { src: heroCollage, alt: 'Nepali workers across construction, retail, healthcare and hospitality roles' },
   secondaryCta: { label: 'View Job Categories', href: '/jobs' },
   highlights: [
@@ -143,7 +132,7 @@ export const about = {
   eyebrow: 'About the company',
   heading: 'A trusted recruitment partner between Nepal and the world',
   body: [
-    'Sky Bridge Overseas Private Limited is a manpower recruitment agency in Nepal, established in 2017 under the Companies Act, 2006 with registration number 164997/073/074, and licensed by the Department of Foreign Employment under the Foreign Employment Act, 2064/2007 with licence number 1166/073/074.',
+    'Future Nest International Private Limited — formerly Sky Bridge Overseas Pvt. Ltd. — is a manpower recruitment agency in Nepal, established in 2017 under the Companies Act, 2006 with registration number 164997/073/074, and licensed by the Department of Foreign Employment under the Foreign Employment Act, 2064/2007 with licence number 1166/073/074.',
     'It was established by leading experts and businessmen in the field of recruitment service, and the company management has vast experience in the recruitment field. The company targets to be a business partner to companies requiring skilled, semi-skilled and unskilled manpower.',
     'The company focuses on providing high quality client service in a timely manner, and on establishing long-term business relationships with its clients.',
   ],
@@ -202,7 +191,7 @@ export const services = {
   eyebrow: 'What we recruit for',
   heading: 'Job categories we provide',
   intro:
-    'Sky Bridge Overseas supplies workers across twelve categories, from trade and construction crews to hospitality, retail, security and medical staff.',
+    'Future Nest International supplies workers across twelve categories, from trade and construction crews to hospitality, retail, security and medical staff.',
   items: [
     {
       title: 'Scaffolder',
@@ -284,7 +273,7 @@ export const process = {
   eyebrow: 'How we work',
   heading: 'Our recruitment process',
   intro:
-    'Sky Bridge Overseas follows this process to deploy workers from Nepal, meeting the requirements of the Department of Foreign Employment at every stage.',
+    'Future Nest International follows this process to deploy workers from Nepal, meeting the requirements of the Department of Foreign Employment at every stage.',
   steps: [
     {
       title: 'Enquiry from Employer',
@@ -324,12 +313,12 @@ export const process = {
     {
       title: 'Demand Letter',
       description:
-        'Addressed to Sky Bridge Overseas Pvt. Ltd., stating the number of workers required in each category with salary, accommodation and other benefits.',
+        'Addressed to Future Nest International Pvt. Ltd., stating the number of workers required in each category with salary, accommodation and other benefits.',
     },
     {
       title: 'Power of Attorney',
       description:
-        'Authorising Sky Bridge Overseas Pvt. Ltd., Kathmandu, Nepal to act as true and lawful attorney and agent.',
+        'Authorising Future Nest International Pvt. Ltd., Kathmandu, Nepal to act as true and lawful attorney and agent.',
     },
     {
       title: 'Employment Agreement',
@@ -338,7 +327,7 @@ export const process = {
     {
       title: 'Agency Agreement',
       description:
-        'Sky Bridge Overseas Pvt. Ltd. screens the shortlisted candidates by pre-interview. Employers may make their own selection from workers already pre-interviewed, and may interview directly by video conference if preferred.',
+        'Future Nest International Pvt. Ltd. screens the shortlisted candidates by pre-interview. Employers may make their own selection from workers already pre-interviewed, and may interview directly by video conference if preferred.',
     },
     {
       title: 'Guarantee Letter',
@@ -359,7 +348,7 @@ export const leadership = {
       role: 'Chairman',
       photo: { src: chairmanPhoto, alt: 'Laxmi Prasad Bastola, Chairman' },
       quote:
-        "No matter where we are or what we do, there are fundamental beliefs and behaviours that guide our decisions, focus and actions and unite us as a company. Sky Bridge Overseas's vision and values serve to inspire how we interact, create and deliver on our promise to clients, job seekers and ourselves.",
+        "No matter where we are or what we do, there are fundamental beliefs and behaviours that guide our decisions, focus and actions and unite us as a company. Our vision and values serve to inspire how we interact, create and deliver on our promise to clients, job seekers and ourselves.",
     },
     {
       name: 'Purna Bahadur Limbu',
@@ -401,7 +390,7 @@ export const certifications = {
   eyebrow: 'Registered and licensed',
   heading: 'Licences & certificates',
   intro:
-    'Sky Bridge Overseas operates under the Companies Act, 2006 and the Foreign Employment Act, 2064/2007. The originals reproduced here appear in the company profile.',
+    'The company operates under the Companies Act, 2006 and the Foreign Employment Act, 2064/2007. The certificates reproduced here are issued in the former name, Sky Bridge Overseas Pvt. Ltd.; the registration and licence numbers are unaffected by the change of name.',
   items: [
     {
       name: 'Certificate of Incorporation',
@@ -512,7 +501,7 @@ export const cta = {
 
 export const contact = {
   eyebrow: 'Get in touch',
-  heading: 'Contact Sky Bridge Overseas',
+  heading: 'Contact Future Nest International',
   intro:
     'Employers and job seekers are welcome to contact our Kathmandu office by phone, email or the form below.',
   phones: ['+977-1-4977511'],

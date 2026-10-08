@@ -4,33 +4,29 @@ import styles from './Logo.module.css';
 /**
  * Company mark.
  *
- * The full lockup stacks the bridge device over the wordmark, which is too
- * tall for a 76px header, so the navbar pairs the mark with a typeset name and
- * the footer uses the full lockup on its own.
+ * The emblem is circular with its own wordmark inside, which is unreadable at
+ * header size, so it is paired with the name typeset beside it. `size` picks
+ * the emblem's diameter; `tone` flips the text for dark backgrounds.
  */
-export function Logo({ variant = 'lockup', tone = 'default', className = '' }) {
-  const name = company.name;
-
-  if (variant === 'full' && company.logo?.src) {
-    return (
-      <img
-        src={company.logo.src}
-        alt={company.logo.alt || name}
-        className={[styles.full, className].filter(Boolean).join(' ')}
-        width="900"
-        height="398"
-      />
-    );
-  }
+export function Logo({ size = 'md', tone = 'default', className = '' }) {
+  const classes = [styles.lockup, styles[size], styles[tone], className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <span className={[styles.lockup, styles[tone], className].filter(Boolean).join(' ')}>
+    <span className={classes}>
       {company.logoMark?.src && (
-        <img src={company.logoMark.src} alt="" className={styles.mark} width="400" height="244" />
+        <img
+          src={company.logoMark.src}
+          alt=""
+          className={styles.mark}
+          width="512"
+          height="512"
+        />
       )}
       <span className={styles.text}>
-        <span className={styles.name}>{company.shortName || name}</span>
-        <span className={styles.sub}>Manpower Agency</span>
+        <span className={styles.name}>{company.shortName || company.name}</span>
+        <span className={styles.sub}>Pvt. Ltd.</span>
       </span>
     </span>
   );

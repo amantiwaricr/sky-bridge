@@ -1,15 +1,15 @@
 /* ==========================================================================
    DESIGN TOKENS
    --------------------------------------------------------------------------
-   The palette is Sky Bridge Overseas' own, sampled from the company profile
-   PDF (see the BRAND block for the source of each value). Every component
+   The palette is the company's own, sampled from the company profile document
+   former name (see the BRAND block for the source of each value). Every component
    consumes these variables and none hard-codes a colour, so the whole site
    re-skins from this one file.
    ========================================================================== */
 
 :root {
   /* ---------- BRAND ------------------------------------------------------
-     Every value below was sampled directly from the Sky Bridge Overseas
+     Every value below was sampled directly from the
      company profile PDF:
        #05527A  cover background navy
        #0071A7  section header bars, "Our Mission/Vision/Values" labels

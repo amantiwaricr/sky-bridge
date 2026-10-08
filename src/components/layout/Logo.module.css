@@ -1,9 +1,3 @@
-.full {
-  width: auto;
-  max-width: 240px;
-  height: auto;
-}
-
 .lockup {
   display: inline-flex;
   align-items: center;
@@ -11,10 +5,12 @@
   min-width: 0;
 }
 
+/* The emblem is a circle, so width and height stay locked together. */
 .mark {
-  width: auto;
-  height: 40px;
   flex-shrink: 0;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
 }
 
 .text {
@@ -25,17 +21,15 @@
 
 .name {
   font-family: var(--font-display);
-  font-size: 1.12rem;
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--brand-700);
+  color: var(--brand-800);
   white-space: nowrap;
 }
 
 .sub {
-  font-size: 0.66rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -43,6 +37,28 @@
   white-space: nowrap;
 }
 
+/* ---------- Sizes ---------- */
+.md .mark {
+  height: 44px;
+}
+.md .name {
+  font-size: 1.08rem;
+}
+.md .sub {
+  font-size: 0.64rem;
+}
+
+.lg .mark {
+  height: 72px;
+}
+.lg .name {
+  font-size: 1.3rem;
+}
+.lg .sub {
+  font-size: 0.7rem;
+}
+
+/* ---------- Tone ---------- */
 .inverse .name {
   color: var(--text-inverse);
 }
@@ -51,27 +67,41 @@
   color: var(--text-inverse-muted);
 }
 
-/* Step the lockup down before it can crowd the menu button. */
+/* "FUTURE NEST INTERNATIONAL" on one line is wider than a phone's footer
+   column, so the large lockup wraps rather than forcing the page sideways.
+   The header keeps one line -- it has the full width to itself. */
+@media (max-width: 34rem) {
+  .lg .mark {
+    height: 56px;
+  }
+
+  .lg .name {
+    font-size: 1.05rem;
+    white-space: normal;
+    text-wrap: balance;
+  }
+}
+
+/* Step down before the lockup can crowd the menu button. */
 @media (max-width: 30rem) {
   .lockup {
     gap: var(--space-2);
   }
 
-  .mark {
-    height: 32px;
+  .md .mark {
+    height: 36px;
   }
 
-  .name {
-    font-size: 0.95rem;
+  .md .name {
+    font-size: 0.92rem;
   }
 
-  .sub {
-    font-size: 0.6rem;
+  .md .sub {
+    font-size: 0.58rem;
     letter-spacing: 0.16em;
   }
 }
 
-/* The subtitle is the first thing to go when space is tight. */
 @media (max-width: 23rem) {
   .sub {
     display: none;

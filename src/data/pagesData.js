@@ -44,16 +44,17 @@ export const aboutPage = {
   route: ROUTES.about,
   navLabel: 'About',
   title: 'About Us',
-  metaTitle: 'About — Sky Bridge Overseas Pvt. Ltd.',
+  metaTitle: 'About — Future Nest International Pvt. Ltd.',
   metaDescription:
-    'Sky Bridge Overseas Pvt. Ltd. is a Government of Nepal licensed manpower recruitment agency in Kathmandu, established 2017, licence 1166/073/074.',
+    'Future Nest International Pvt. Ltd. (formerly Sky Bridge Overseas) is a Government of Nepal licensed manpower recruitment agency in Kathmandu, established 2017, licence 1166/073/074.',
   lead:
-    'Sky Bridge Overseas Pvt. Ltd. is a manpower recruitment agency based in Kathmandu, licensed by the Government of Nepal to recruit and deploy Nepali workers to employers abroad.',
+    'Future Nest International Pvt. Ltd. is a manpower recruitment agency based in Kathmandu, licensed by the Government of Nepal to recruit and deploy Nepali workers to employers abroad.',
   sections: [
     {
       heading: 'Who we are',
       paragraphs: [
-        'Sky Bridge Overseas Private Limited was established in 2017 under the Companies Act, 2006 of the Government of Nepal, with registration number 164997/073/074. The company was incorporated on 6 March 2017 by the Office of the Company Registrar, Ministry of Industry.',
+        'The company trades as Future Nest International Pvt. Ltd. It was previously named Sky Bridge Overseas Pvt. Ltd.; the change of name was published by the Department of Foreign Employment, and the company registration and foreign employment licence are unchanged by it.',
+        'The company was established in 2017 under the Companies Act, 2006 of the Government of Nepal, with registration number 164997/073/074. The company was incorporated on 6 March 2017 by the Office of the Company Registrar, Ministry of Industry.',
         'It operates under licence from the Department of Foreign Employment, granted under the Foreign Employment Act, 2064/2007 and the Foreign Employment Regulation, 2064/2007, with licence number 1166/073/074 issued on 19 May 2017. The licence is current and renewed to mid-July 2027.',
         'The company was established by people already working in recruitment, and its management carries that experience into the business. Its stated aim is to act as a business partner to companies that need skilled, semi-skilled and unskilled manpower, rather than simply to fill vacancies as they arise.',
       ],
@@ -99,9 +100,9 @@ export const purposePage = {
   route: ROUTES.purpose,
   navLabel: 'Purpose',
   title: 'Purpose & Principles',
-  metaTitle: 'Purpose, Mission and Values — Sky Bridge Overseas',
+  metaTitle: 'Purpose, Mission and Values — Future Nest International',
   metaDescription:
-    'The mission, vision and values of Sky Bridge Overseas Pvt. Ltd. — People, Knowledge and Innovation — and what each means in day-to-day recruitment practice.',
+    'The mission, vision and values of Future Nest International Pvt. Ltd. — People, Knowledge and Innovation — and what each means in day-to-day recruitment practice.',
   lead:
     'Three words sit on the cover of the company profile: People, Knowledge, Innovation. They are the values the company states for itself, and the rest follows from them.',
   sections: [
@@ -154,7 +155,7 @@ export const jobsPage = {
   route: ROUTES.jobs,
   navLabel: 'Jobs',
   title: 'Job Categories',
-  metaTitle: 'Job Categories — Sky Bridge Overseas Manpower Agency',
+  metaTitle: 'Job Categories — Future Nest International Manpower Agency',
   metaDescription:
     'Twelve job categories recruited from Nepal: scaffolding, mechanical, engineering, civil construction, technicians, hospitality, retail, office, security, sports and medical staff.',
   lead:
@@ -247,7 +248,7 @@ export const processPage = {
   route: ROUTES.process,
   navLabel: 'Process',
   title: 'Recruitment Process',
-  metaTitle: 'Recruitment Process — Sky Bridge Overseas',
+  metaTitle: 'Recruitment Process — Future Nest International',
   metaDescription:
     'The six-step process for recruiting and deploying workers from Nepal, the documents an employer must provide, and how Department of Foreign Employment approval works.',
   lead:
@@ -301,9 +302,9 @@ export const teamPage = {
   route: ROUTES.team,
   navLabel: 'Team',
   title: 'Leadership & Organisation',
-  metaTitle: 'Leadership and Organisation — Sky Bridge Overseas',
+  metaTitle: 'Leadership and Organisation — Future Nest International',
   metaDescription:
-    'The chairman, managing director and directors of Sky Bridge Overseas Pvt. Ltd., their messages from the company profile, and how the office is organised.',
+    'The chairman, managing director and directors of Future Nest International Pvt. Ltd., their messages from the company profile, and how the office is organised.',
   lead:
     'The four people below signed the company profile. Their messages are reproduced as written, and the organisational structure they set out follows.',
   structureNote: {
@@ -361,9 +362,9 @@ export const clientsPage = {
   route: ROUTES.clients,
   navLabel: 'Clients',
   title: 'Our Valued Clients',
-  metaTitle: 'Clients — Sky Bridge Overseas Manpower Agency',
+  metaTitle: 'Clients — Future Nest International Manpower Agency',
   metaDescription:
-    'The employer companies listed in the Sky Bridge Overseas company profile, across manufacturing, engineering, logistics, facilities, retail and security.',
+    'The employer companies listed in the company profile, across manufacturing, engineering, logistics, facilities, retail and security.',
   lead:
     'These are the companies listed as clients in the company profile. Their names and marks are reproduced as published.',
   sectorsNote: {
@@ -429,7 +430,7 @@ export const licencesPage = {
   route: ROUTES.licences,
   navLabel: 'Licences',
   title: 'Licences & Certificates',
-  metaTitle: 'Licences and Certificates — Sky Bridge Overseas',
+  metaTitle: 'Licences and Certificates — Future Nest International',
   metaDescription:
     'Company registration 164997/073/074 and foreign employment licence 1166/073/074, with the certificates as reproduced in the company profile.',
   lead:
@@ -485,9 +486,9 @@ export const contactPage = {
   route: ROUTES.contact,
   navLabel: 'Contact',
   title: 'Contact Us',
-  metaTitle: 'Contact — Sky Bridge Overseas Pvt. Ltd., Kathmandu',
+  metaTitle: 'Contact — Future Nest International Pvt. Ltd., Kathmandu',
   metaDescription:
-    'Contact Sky Bridge Overseas Pvt. Ltd. in Tokha-10, Kathmandu, Nepal. Telephone +977-1-4977511, email skybridgeoverseasp@gmail.com.',
+    'Contact Future Nest International Pvt. Ltd. in Tokha-10, Kathmandu, Nepal. Telephone +977-1-4977511, email skybridgeoverseasp@gmail.com.',
   lead:
     'Employers with a requirement and job seekers looking for work are both welcome to get in touch. The more detail an enquiry carries, the more useful the first reply will be.',
   audiences: [

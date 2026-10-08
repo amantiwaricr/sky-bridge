@@ -1,3 +1,0 @@
-# Netlify: serve index.html for every path so client-side routes resolve on a
-# direct hit or a refresh. Other hosts need their own equivalent -- see README.
-/*  /index.html  200

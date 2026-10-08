@@ -5,6 +5,7 @@ import {
 } from '../../data/companyData';
 import { Container } from '../ui/Container';
 import { Icon } from '../ui/Icon';
+import { Logo } from './Logo';
 import styles from './Footer.module.css';
 
 /** A footer link with the small leading chevron used throughout the columns. */
@@ -57,17 +58,8 @@ export function Footer() {
         <div className={styles.top}>
           {/* Brand */}
           <div className={styles.brandCol}>
-            {company.logo?.src && (
-              <span className={styles.logoBadge}>
-                <img
-                  src={company.logo.src}
-                  alt={company.logo.alt || company.name}
-                  className={styles.logoImage}
-                  width="900"
-                  height="398"
-                />
-              </span>
-            )}
+            <Logo size="lg" tone="inverse" />
+            {company.tagline && <p className={styles.tagline}>{company.tagline}</p>}
             {footer.description && (
               <p className={styles.blurb}>
                 {footer.description}

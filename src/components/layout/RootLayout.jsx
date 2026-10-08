@@ -3,9 +3,8 @@ import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { ScrollToTop } from './ScrollToTop';
 import { RouteScrollToTop } from './RouteScrollToTop';
-import { NoticeModal } from '../ui/NoticeModal';
 
-/** Chrome shared by every route: header, footer and the launch notice. */
+/** Chrome shared by every route: header and footer. */
 export function RootLayout() {
   return (
     <>
@@ -19,7 +18,6 @@ export function RootLayout() {
       </main>
       <Footer />
       <ScrollToTop />
-      <NoticeModal />
     </>
   );
 }
