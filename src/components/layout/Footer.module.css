@@ -2,7 +2,7 @@
   padding-top: var(--space-8);
   /* Deep brand field, matching the reference footer's saturated colour block.
      The company's palette is navy rather than green, so the site stays on brand. */
-  background: linear-gradient(180deg, var(--brand-900) 0%, #02222F 100%);
+  background: linear-gradient(180deg, var(--brand-900) 0%, #000B22 100%);
   color: var(--text-inverse-muted);
   font-size: var(--step--1);
 }

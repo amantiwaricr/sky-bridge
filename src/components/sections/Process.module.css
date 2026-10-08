@@ -28,7 +28,9 @@
   font-size: var(--step-3);
   font-weight: 600;
   line-height: 1;
-  color: var(--brand-200);
+  /* Large decorative numerals, but still text: --brand-200 rendered at
+     1.44:1 on white, under the 3:1 bar. */
+  color: var(--brand-400);
   font-variant-numeric: tabular-nums;
 }
 

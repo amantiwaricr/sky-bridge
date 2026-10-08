@@ -1,37 +1,39 @@
 /* ==========================================================================
    DESIGN TOKENS
    --------------------------------------------------------------------------
-   The palette is the company's own, sampled from the company profile document
-   former name (see the BRAND block for the source of each value). Every component
-   consumes these variables and none hard-codes a colour, so the whole site
-   re-skins from this one file.
+   The palette is sampled from the Future Nest International emblem and
+   business card (see the BRAND block for the source of each value). Every
+   component consumes these variables and none hard-codes a brand colour, so
+   the whole site re-skins from this one file.
    ========================================================================== */
 
 :root {
   /* ---------- BRAND ------------------------------------------------------
-     Every value below was sampled directly from the
-     company profile PDF:
-       #05527A  cover background navy
-       #0071A7  section header bars, "Our Mission/Vision/Values" labels
-       #00A0E3  logo wordmark blue (company profile page)
-       #00A8CD  footer bars, cover tagline strip
-       #F5821F  the orange in "SKY" on the company profile page
-       #D4EEFC  pale blue tint used behind body panels
+     Sampled from the Future Nest International emblem and business card:
+       #002166  the emblem's navy ring
+       #0940B5  the blue of the "F" in the FN monogram
+       #084AC5  the globe
+       #E8AD2D  the gold ring around the emblem
+       #FCB318  the amber of the "N" in the monogram
+       #1F295C  the navy band on the business card
+     Every pair that carries text was contrast-checked against WCAG AA; the
+     darkened gold (--accent-600) exists because the ring gold itself is far
+     too light to read as text on white.
      ---------------------------------------------------------------------- */
-  --brand-900: #032F45;
-  --brand-800: #05527A;
-  --brand-700: #0071A7;
-  --brand-600: #0083BC;
-  --brand-500: #00A0E3;
-  --brand-400: #00A8CD;
-  --brand-300: #6FCBE4;
-  --brand-200: #ADE0F0;
-  --brand-100: #D4EEFC;
+  --brand-900: #001338;
+  --brand-800: #002166;
+  --brand-700: #0B3A9D;
+  --brand-600: #0940B5;
+  --brand-500: #084AC5;
+  --brand-400: #3D78DE;
+  --brand-300: #8FB4EE;
+  --brand-200: #C6D8F7;
+  --brand-100: #E9F0FC;
 
-  --accent-600: #C4650F;
-  --accent-500: #F5821F;
-  --accent-400: #F79C4C;
-  --accent-100: #FDEEDF;
+  --accent-600: #8A5A06;
+  --accent-500: #E8AD2D;
+  --accent-400: #FCB318;
+  --accent-100: #FDF3DC;
 
   /* Display face matches the condensed all-caps banners in the PDF;
      body face is a humanist sans close to the profile's Gill Sans-style text. */
@@ -47,24 +49,24 @@
   --accent-hover: var(--accent-600);
 
   --bg: #ffffff;
-  --bg-subtle: #F2F8FC;
+  --bg-subtle: #F3F6FC;
   --bg-inverse: var(--brand-900);
   --surface: #ffffff;
   --surface-raised: #ffffff;
 
-  --text: #12232E;
-  --text-muted: #55697A;
+  --text: #121A2E;
+  --text-muted: #55607A;
   --text-inverse: #ffffff;
-  --text-inverse-muted: #AFC9D8;
+  --text-inverse-muted: #B4C0DC;
 
-  --border: #DCE7EF;
-  --border-strong: #BFD2DF;
+  --border: #DDE3EF;
+  --border-strong: #C2CBDF;
   --border-inverse: rgba(255, 255, 255, 0.14);
 
   --focus-ring: var(--accent-500);
 
   /* The PDF's section banners run deep blue -> cyan, left to right. */
-  --banner-gradient: linear-gradient(90deg, var(--brand-700) 0%, var(--brand-400) 100%);
+  --banner-gradient: linear-gradient(90deg, var(--brand-800) 0%, var(--brand-600) 100%);
 
   /* ---------- TYPE SCALE (fluid) ---------------------------------------- */
   --step--1: clamp(0.82rem, 0.79rem + 0.13vw, 0.89rem);
@@ -108,9 +110,9 @@
   --radius: 6px;
   --radius-lg: 10px;
 
-  --shadow-sm: 0 1px 2px rgba(3, 47, 69, 0.06);
-  --shadow: 0 2px 8px rgba(3, 47, 69, 0.07), 0 1px 2px rgba(3, 47, 69, 0.05);
-  --shadow-lg: 0 12px 32px rgba(3, 47, 69, 0.1), 0 2px 6px rgba(3, 47, 69, 0.05);
+  --shadow-sm: 0 1px 2px rgba(0, 19, 56, 0.06);
+  --shadow: 0 2px 8px rgba(0, 19, 56, 0.07), 0 1px 2px rgba(0, 19, 56, 0.05);
+  --shadow-lg: 0 12px 32px rgba(0, 19, 56, 0.1), 0 2px 6px rgba(0, 19, 56, 0.05);
 
   /* ---------- MOTION ---------------------------------------------------- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
